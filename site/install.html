@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0c0a07">
+<meta name="description" content="دليل تثبيت arabcode على ماك ولينكس وويندوز — npm و curl و PowerShell و Homebrew ومن المصدر، مع خطوات التحقق وإزالة التثبيت.">
+<title>arabcode — التثبيت</title>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav" aria-label="التنقل الرئيسي">
+    <a class="brand" href="index.html"><span class="glyph" aria-hidden="true">ع</span><span>arab<span class="dot">code</span></span></a>
+    <div class="nav-links">
+      <a href="index.html">الرئيسية</a>
+      <a href="models.html">النماذج</a>
+      <a href="features.html">الميزات</a>
+      <a href="install.html" class="active" aria-current="page">التثبيت</a>
+      <a class="gh" href="https://github.com/abdallhx2/arabcode" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        <span class="lbl">GitHub</span>
+      </a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">دليل التثبيت</span>
+    <h1>ثبّت <span class="code-name">arabcode</span> في دقيقة</h1>
+    <p class="tagline">يعمل على ماك ولينكس وويندوز (ويندوز و PowerShell مدعومان دعمًا كاملًا). اختر منصّتك أدناه، ثم تحقّق من التثبيت وابدأ.</p>
+  </div>
+</section>
+
+<!-- REQUIREMENTS -->
+<section class="section">
+  <div class="wrap">
+    <h2>المتطلبات</h2>
+    <div class="grid grid-3" style="margin-top:1.2rem">
+      <div class="card">
+        <h3>طرفية تدعم Unicode</h3>
+        <p>ضرورية لعرض النص العربي مع التشكيل واتجاه RTL بشكل صحيح — مثل WezTerm أو Alacritty أو Ghostty أو Kitty.</p>
+      </div>
+      <div class="card">
+        <h3>Node.js و npm</h3>
+        <p>مطلوبة فقط لطريقة التثبيت عبر npm. يُنصح بإصدار حديث ومدعوم من Node.js.</p>
+      </div>
+      <div class="card">
+        <h3>ripgrep <span class="badge">اختياري</span></h3>
+        <p>يُسرّع البحث داخل المشاريع بشكل ملحوظ، لكنه اختياري وليس شرطًا للتشغيل.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTALL BY PLATFORM -->
+<section class="section">
+  <div class="wrap">
+    <h2>التثبيت حسب المنصّة</h2>
+    <p class="lead">أوامر التثبيت الرسمية لـ arabcode — انسخها كما هي.</p>
+
+    <div class="tabs" data-tabs>
+      <div class="tab-row" role="tablist" aria-label="منصّات التثبيت">
+        <button class="tab-btn" role="tab" aria-selected="true" aria-controls="p-mac" id="tb-mac">macOS</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="p-linux" id="tb-linux">Linux</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="p-win" id="tb-win">Windows</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="p-npm" id="tb-npm">npm</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="p-src" id="tb-src">من المصدر</button>
+      </div>
+
+      <!-- macOS -->
+      <div class="tab-panel active" id="p-mac" role="tabpanel" aria-labelledby="tb-mac">
+        <h3>سكربت curl (موصى به)</h3>
+        <div class="cmd"><code><span class="tok-cmd">curl -fsSL</span> https://raw.githubusercontent.com/abdallhx2/arabcode/main/install <span class="tok-cmd">| bash</span></code><button class="copy-btn" data-copy="curl -fsSL https://raw.githubusercontent.com/abdallhx2/arabcode/main/install | bash" aria-label="نسخ"><svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></button></div>
+        <h3>Homebrew</h3>
+        <div class="cmd"><code><span class="tok-cmd">brew install</span> <span class="tok-pkg">abdallhx2/tap/arabcode</span></code><button class="copy-btn" data-copy="brew install abdallhx2/tap/arabcode" aria-label="نسخ"><svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></button></div>
+        <p class="dim" style="font-size:0.9rem">يُثبَّت التنفيذي في <code class="inline">$HOME/.arabcode/bin</code>. تأكّد أن هذا المسار ضمن <code class="inline">PATH</code>.</p>
+      </div>
+
+      <!-- Linux -->
+      <div class="tab-panel" id="p-linux" role="tabpanel" aria-labelledby="tb-linux">
+        <h3>سكربت curl (موصى به)</h3>
+        <div class="cmd"><code><span class="tok-cmd">curl -fsSL</span> https://raw.githubusercontent.com/abdallhx2/arabcode/main/install <span class="tok-cmd">| bash</span></code><button class="copy-btn" data-copy="curl -fsSL https://raw.githubusercontent.com/abdallhx2/arabcode/main/install | bash" aria-label="نسخ"><svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></button></div>
+        <h3>Homebrew (Linuxbrew)</h3>
+        <div class="cmd"><code><span class="tok-cmd">brew install</span> <span class="tok-pkg">abdallhx2/tap/arabcode</span></code><button class="copy-btn" data-copy="brew install abdallhx2/tap/arabcode" aria-label="نسخ"><svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></button></div>
+        <p class="dim" style="font-size:0.9rem">يُثبَّت التنفيذي في <code class="inline">$HOME/.arabcode/bin</code>. تأكّد أن هذا المسار ضمن <code class="inline">PATH</code>.</p>
+      </div>
+
+      <!-- Windows -->
+      <div class="tab-panel" id="p-win" role="tabpanel" aria-labelledby="tb-win">
+        <h3>PowerShell (موصى به)</h3>
+        <div class="cmd"><code><span class="tok-cmd">irm</span> https://raw.githubusercontent.com/abdallhx2/arabcode/main/install.ps1 <span class="tok-cmd">| iex</span></code><button class="copy-btn" data-copy="irm https://raw.githubusercontent.com/abdallhx2/arabcode/main/install.ps1 | iex" aria-label="نسخ"><svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></button></div>
+        <h3>npm</h3>
+        <div class="cmd"><code><span class="tok-cmd">npm i -g</span> <span class="tok-pkg">arabcode</span></code><button class="copy-btn" data-copy="npm i -g arabcode" aria-label="نسخ"><svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></button></div>
+        <p class="dim" style="font-size:0.9rem">يُثبَّت التنفيذي في <code class="inline">%LOCALAPPDATA%\arabcode\bin</code>. للحصول على أفضل تجربة على ويندوز يُنصح باستخدام WSL. arabcode يدعم ويندوز و PowerShell دعمًا كاملًا.</p>
+      </div>
+
+      <!-- npm -->
+      <div class="tab-panel" id="p-npm" role="tabpanel" aria-labelledby="tb-npm">
+        <h3>npm (كل الأنظمة)</h3>
+        <div class="cmd"><code><span class="tok-cmd">npm i -g</span> <span class="tok-pkg">arabcode</span></code><button class="copy-btn" data-copy="npm i -g arabcode" aria-label="نسخ"><svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></button></div>
+        <p class="dim" style="font-size:0.9rem">تعمل هذه الطريقة على ماك ولينكس وويندوز. تتطلّب Node.js و npm مثبّتَين مسبقًا.</p>
+      </div>
+
+      <!-- from source -->
+      <div class="tab-panel" id="p-src" role="tabpanel" aria-labelledby="tb-src">
+        <h3>من المصدر</h3>
+        <div class="code-block">
+          <button class="copy-btn" data-copy="git clone https://github.com/abdallhx2/arabcode && cd arabcode && bun install && bun run --cwd packages/opencode dev" aria-label="نسخ"><svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></button>
+          <div class="code-title">bash</div>
+          <pre class="code"><code>git clone https://github.com/abdallhx2/arabcode \
+  &amp;&amp; cd arabcode \
+  &amp;&amp; bun install \
+  &amp;&amp; bun run --cwd packages/opencode dev</code></pre>
+        </div>
+        <p class="dim" style="font-size:0.9rem">يتطلّب <a href="https://bun.sh" target="_blank" rel="noopener noreferrer">Bun</a> مثبّتًا. اسم مجلد الحزمة الداخلي <code class="inline">packages/opencode</code> موروث ولا يتغيّر.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VERIFY + QUICKSTART -->
+<section class="section">
+  <div class="wrap">
+    <div class="grid grid-2">
+      <div>
+        <h2>التحقق من التثبيت</h2>
+        <p>اعرض رقم الإصدار ثم شغّل الأداة:</p>
+        <div class="code-block">
+          <button class="copy-btn" data-copy="arabcode --version&#10;arabcode" aria-label="نسخ"><svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></button>
+          <div class="code-title">bash</div>
+          <pre class="code"><code>arabcode --version
+arabcode</code></pre>
+        </div>
+      </div>
+      <div>
+        <h2>البدء السريع</h2>
+        <p>افتح مجلد مشروعك وشغّل الأداة:</p>
+        <div class="code-block">
+          <button class="copy-btn" data-copy="cd &lt;مشروعك&gt;&#10;arabcode" aria-label="نسخ"><svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></button>
+          <div class="code-title">bash</div>
+          <pre class="code"><code>cd &lt;مشروعك&gt;   <span class="tk-comment"># افتح مجلد المشروع</span>
+arabcode       <span class="tk-comment"># شغّل الأداة</span></code></pre>
+        </div>
+      </div>
+    </div>
+    <p>بعد التشغيل، اربط موديلًا من صفحة <a href="models.html">النماذج والموديلات</a> — ابدأ مجانًا أو اربط مفتاحك الخاص.</p>
+  </div>
+</section>
+
+<!-- UNINSTALL -->
+<section class="section">
+  <div class="wrap">
+    <h2>إزالة التثبيت</h2>
+    <p class="lead">اختر الطريقة المطابقة لكيفية تثبيتك.</p>
+
+    <h3>npm</h3>
+    <div class="cmd"><code><span class="tok-cmd">npm uninstall -g</span> <span class="tok-pkg">arabcode</span></code><button class="copy-btn" data-copy="npm uninstall -g arabcode" aria-label="نسخ"><svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></button></div>
+
+    <h3>ماك / لينكس (curl أو من المصدر)</h3>
+    <p>احذف مجلد التثبيت ثم أزِل مدخل PATH المرتبط به من ملف إعداد طرفيتك (<code class="inline">~/.bashrc</code> أو <code class="inline">~/.zshrc</code>):</p>
+    <div class="cmd"><code><span class="tok-cmd">rm -rf</span> ~/.arabcode</code><button class="copy-btn" data-copy="rm -rf ~/.arabcode" aria-label="نسخ"><svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></button></div>
+
+    <h3>ويندوز (PowerShell)</h3>
+    <p>احذف مجلد التثبيت ثم أزِل <code class="inline">%LOCALAPPDATA%\arabcode\bin</code> من متغيّر البيئة <code class="inline">PATH</code>:</p>
+    <div class="cmd"><code><span class="tok-cmd">Remove-Item -Recurse -Force</span> "$env:LOCALAPPDATA\arabcode"</code><button class="copy-btn" data-copy='Remove-Item -Recurse -Force "$env:LOCALAPPDATA\arabcode"' aria-label="نسخ"><svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></button></div>
+
+    <h3>Homebrew</h3>
+    <div class="cmd"><code><span class="tok-cmd">brew uninstall</span> <span class="tok-pkg">arabcode</span></code><button class="copy-btn" data-copy="brew uninstall arabcode" aria-label="نسخ"><svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></button></div>
+  </div>
+</section>
+
+<!-- TEMPLATE NOTE -->
+<section class="section">
+  <div class="wrap">
+    <div class="note">
+      <span class="note-label">ملاحظة حول القوالب</span>
+      يُوزَّع هذا المشروع كقوالب قابلة للتخصيص، لذلك تحتوي بعض الأوامر على رموز نائبة (placeholders) يجب استبدالها بقيم حقيقية قبل النشر: <code class="inline">abdallhx2</code> (مالك المستودع)، <code class="inline">https://raw.githubusercontent.com/abdallhx2/arabcode/main/install</code> و<code class="inline">https://raw.githubusercontent.com/abdallhx2/arabcode/main/install.ps1</code> (روابط سكربتات التثبيت)، <code class="inline">https://github.com/abdallhx2/arabcode</code> و<code class="inline">https://github.com/abdallhx2/arabcode#readme</code>.
+    </div>
+    <div class="code-block">
+      <button class="copy-btn" data-copy="sed -i \&#10;  -e 's|abdallhx2|your-org|g' \&#10;  -e 's|https://raw.githubusercontent.com/abdallhx2/arabcode/main/install|https://raw.githubusercontent.com/your-org/arabcode/dev/install|g' \&#10;  -e 's|https://raw.githubusercontent.com/abdallhx2/arabcode/main/install.ps1|https://raw.githubusercontent.com/your-org/arabcode/dev/install.ps1|g' \&#10;  -e 's|https://github.com/abdallhx2/arabcode|https://github.com/your-org/arabcode|g' \&#10;  -e 's|https://github.com/abdallhx2/arabcode#readme|https://github.com/your-org/arabcode#readme|g' \&#10;  site/*.html" aria-label="نسخ"><svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></button>
+      <div class="code-title">bash — استبدل الرموز النائبة (غيّر your-org)</div>
+      <pre class="code"><code>sed -i \
+  -e 's|abdallhx2|your-org|g' \
+  -e 's|https://raw.githubusercontent.com/abdallhx2/arabcode/main/install|https://raw.githubusercontent.com/your-org/arabcode/dev/install|g' \
+  -e 's|https://raw.githubusercontent.com/abdallhx2/arabcode/main/install.ps1|https://raw.githubusercontent.com/your-org/arabcode/dev/install.ps1|g' \
+  -e 's|https://github.com/abdallhx2/arabcode|https://github.com/your-org/arabcode|g' \
+  -e 's|https://github.com/abdallhx2/arabcode#readme|https://github.com/your-org/arabcode#readme|g' \
+  site/*.html</code></pre>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-top">
+      <div style="max-width:34ch">
+        <a class="brand" href="index.html"><span class="glyph" aria-hidden="true">ع</span><span>arab<span class="dot">code</span></span></a>
+        <p class="dim" style="margin-top:0.6rem; font-size:0.9rem">أول أداة CLI ذكاء اصطناعي للطرفية بالعربية الكاملة.</p>
+      </div>
+      <nav class="foot-links" aria-label="روابط التذييل">
+        <a href="index.html">الرئيسية</a>
+        <a href="models.html">النماذج</a>
+        <a href="features.html">الميزات</a>
+        <a href="install.html">التثبيت</a>
+        <a href="landing/index.html">الصفحة التعريفية</a>
+        <a href="https://github.com/abdallhx2/arabcode" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </nav>
+    </div>
+    <p class="lineage">
+      arabcode يعرّب الطرفية بالكامل (اتجاه RTL + تشكيل عربي) — وهي إضافته الجوهرية فوق المحرّك. وهو <strong>مبني على <a href="https://opencode.ai" target="_blank" rel="noopener noreferrer">opencode</a> مفتوح المصدر</strong> — رخصة MIT. الميزات الموروثة هي من opencode؛ إسهام arabcode الأساسي هو طبقة العربية (الاتجاه والتشكيل والإدخال).
+    </p>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll(".copy-btn").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var text = btn.getAttribute("data-copy") || "";
+      var done = function () {
+        btn.classList.add("copied");
+        setTimeout(function () { btn.classList.remove("copied"); }, 1500);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(done);
+      } else { done(); }
+    });
+  });
+
+  document.querySelectorAll("[data-tabs]").forEach(function (group) {
+    var tabs = group.querySelectorAll('[role="tab"]');
+    tabs.forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        tabs.forEach(function (t) {
+          t.setAttribute("aria-selected", "false");
+          var p = group.querySelector("#" + t.getAttribute("aria-controls"));
+          if (p) p.classList.remove("active");
+        });
+        tab.setAttribute("aria-selected", "true");
+        var panel = group.querySelector("#" + tab.getAttribute("aria-controls"));
+        if (panel) panel.classList.add("active");
+      });
+    });
+  });
+</script>
+</body>
+</html>

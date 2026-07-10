@@ -1,0 +1,143 @@
+diff --git a/node_modules/@opentui/core/.bun-tag-3b97683e4dd09578 b/.bun-tag-3b97683e4dd09578
+new file mode 100644
+index 0000000000000000000000000000000000000000..e69de29bb2d1d6434b8b29ae775ad8c2e48c5391
+diff --git a/node_modules/@opentui/core/.bun-tag-6a8c2a9a4eb041a0 b/.bun-tag-6a8c2a9a4eb041a0
+new file mode 100644
+index 0000000000000000000000000000000000000000..e69de29bb2d1d6434b8b29ae775ad8c2e48c5391
+diff --git a/node_modules/@opentui/core/.bun-tag-8f6285d8c50f4db0 b/.bun-tag-8f6285d8c50f4db0
+new file mode 100644
+index 0000000000000000000000000000000000000000..e69de29bb2d1d6434b8b29ae775ad8c2e48c5391
+diff --git a/node_modules/@opentui/core/.bun-tag-bbbbc587277b3435 b/.bun-tag-bbbbc587277b3435
+new file mode 100644
+index 0000000000000000000000000000000000000000..e69de29bb2d1d6434b8b29ae775ad8c2e48c5391
+diff --git a/index-xt9f071j.js b/index-xt9f071j.js
+index 179a27f7b9efcf0a56196e6044993919ae183c9c..aab5df9cc2bdfe01fb569faa086899fe81a5c5ad 100644
+--- a/index-xt9f071j.js
++++ b/index-xt9f071j.js
+@@ -2653,6 +2653,7 @@ class BoxRenderable extends Renderable {
+     const currentBorderColor = hasFocusWithin ? this._focusedBorderColor : this._borderColor;
+     const screenX = this._screenX;
+     const screenY = this._screenY;
++    const rtlLine = globalThis.__arabcodeRtl?.line;
+     buffer.drawBox({
+       x: screenX,
+       y: screenY,
+@@ -2664,10 +2665,10 @@ class BoxRenderable extends Renderable {
+       borderColor: currentBorderColor,
+       backgroundColor: this._backgroundColor,
+       shouldFill: this.shouldFill,
+-      title: this._title,
++      title: rtlLine && this._title ? rtlLine(this._title) : this._title,
+       titleColor: this._titleColor ?? currentBorderColor,
+       titleAlignment: this._titleAlignment,
+-      bottomTitle: this._bottomTitle,
++      bottomTitle: rtlLine && this._bottomTitle ? rtlLine(this._bottomTitle) : this._bottomTitle,
+       bottomTitleAlignment: this._bottomTitleAlignment
+     });
+   }
+@@ -2795,6 +2796,7 @@ class TextBufferRenderable extends Renderable {
+       this.textBufferView.setViewport(this._scrollX, this._scrollY, this.width, this.height);
+     }
+     this.textBufferView.setTruncate(this._truncate);
++    globalThis.__arabcodeRtl?.selection?.(this);
+     this.updateTextInfo();
+   }
+   onMouseEvent(event) {
+@@ -2986,6 +2988,7 @@ class TextBufferRenderable extends Renderable {
+     }
+   }
+   onResize(width, height) {
++    globalThis.__arabcodeRtl?.resize?.(this, width);
+     this.textBufferView.setViewport(this._scrollX, this._scrollY, width, height);
+     this.yogaNode.markDirty();
+     this.requestRender();
+@@ -3134,6 +3137,7 @@ class CodeRenderable extends TextBufferRenderable {
+     this._baseHighlight = options.baseHighlight;
+     this._onHighlight = options.onHighlight;
+     this._onChunks = options.onChunks;
++    globalThis.__arabcodeRtl?.code?.(this);
+     if (this._content.length > 0) {
+       if (this._initialStyledText && this._drawUnstyledText) {
+         this.textBuffer.setStyledText(this._initialStyledText);
+@@ -3847,7 +3851,8 @@ class TextRenderable extends TextBufferRenderable {
+     this.updateTextBuffer(styledText);
+   }
+   updateTextBuffer(styledText) {
+-    this.textBuffer.setStyledText(styledText);
++    const rtlTransformed = globalThis.__arabcodeRtl?.transform?.(styledText, this);
++    this.textBuffer.setStyledText(rtlTransformed ?? styledText);
+     this.clearChunks(styledText);
+   }
+   clearChunks(styledText) {}
+@@ -3877,7 +3882,9 @@ class TextRenderable extends TextBufferRenderable {
+         attributes: this._defaultAttributes,
+         link: undefined
+       });
+-      this.textBuffer.setStyledText(new StyledText(chunks));
++      const styledFromNodes = new StyledText(chunks);
++      const rtlTransformed = globalThis.__arabcodeRtl?.transform?.(styledFromNodes, this);
++      this.textBuffer.setStyledText(rtlTransformed ?? styledFromNodes);
+       this.refreshLocalSelection();
+       this.yogaNode.markDirty();
+     }
+@@ -6131,15 +6138,17 @@ class EditBufferRenderable extends Renderable {
+     this.renderCursor(buffer);
+   }
+   renderSelf(buffer) {
++    if (globalThis.__arabcodeRtl?.editor?.draw(this, buffer)) return;
+     buffer.drawEditorView(this.editorView, this._screenX, this._screenY);
+   }
+   renderCursor(buffer) {
+     if (!this._showCursor || !this._focused)
+       return;
+     const visualCursor = this.editorView.getVisualCursor();
++    const rtlCol = globalThis.__arabcodeRtl?.editor?.cursorCol(this, visualCursor);
+     const screenX = this._screenX;
+     const screenY = this._screenY;
+-    const cursorX = screenX + visualCursor.visualCol + 1;
++    const cursorX = screenX + (rtlCol ?? visualCursor.visualCol) + 1;
+     const cursorY = screenY + visualCursor.visualRow + 1;
+     this._ctx.setCursorPosition(cursorX, cursorY, true);
+     this._ctx.setCursorStyle({ ...this._cursorStyle, color: this._cursorColor });
+@@ -6162,6 +6171,7 @@ class EditBufferRenderable extends Renderable {
+   destroy() {
+     if (this.isDestroyed)
+       return;
++    globalThis.__arabcodeRtl?.editor?.dispose(this);
+     this.traits = {};
+     if (this._focused) {
+       this._ctx.setCursorPosition(0, 0, false);
+diff --git a/index.js b/index.js
+index c7badbef2f345f9d228d40c64a69d6570512fd8d..ba0dae3533594b9f1f5c68a0665cc75dfb12868c 100644
+--- a/index.js
++++ b/index.js
+@@ -5135,22 +5135,23 @@ class TextareaRenderable extends EditBufferRenderable {
+       this.editorView.setPlaceholderStyledText([]);
+       return;
+     }
++    const rtlChunks = globalThis.__arabcodeRtl?.chunks;
+     if (typeof placeholder === "string") {
+       const colorStyle = fg(this._placeholderColor);
+       const chunks = [colorStyle(placeholder)];
+-      this.editorView.setPlaceholderStyledText(chunks);
++      this.editorView.setPlaceholderStyledText(rtlChunks ? rtlChunks(chunks) : chunks);
+     } else {
+-      this.editorView.setPlaceholderStyledText(placeholder.chunks);
++      this.editorView.setPlaceholderStyledText(rtlChunks ? rtlChunks(placeholder.chunks) : placeholder.chunks);
+     }
+   }
+   buildActionHandlers() {
+     return new Map([
+-      ["move-left", () => this.moveCursorLeft()],
+-      ["move-right", () => this.moveCursorRight()],
++      ["move-left", () => (globalThis.__arabcodeRtl?.editor?.swapArrows(this) ? this.moveCursorRight() : this.moveCursorLeft())],
++      ["move-right", () => (globalThis.__arabcodeRtl?.editor?.swapArrows(this) ? this.moveCursorLeft() : this.moveCursorRight())],
+       ["move-up", () => this.moveCursorUp()],
+       ["move-down", () => this.moveCursorDown()],
+-      ["select-left", () => this.moveCursorLeft({ select: true })],
+-      ["select-right", () => this.moveCursorRight({ select: true })],
++      ["select-left", () => (globalThis.__arabcodeRtl?.editor?.swapArrows(this) ? this.moveCursorRight({ select: true }) : this.moveCursorLeft({ select: true }))],
++      ["select-right", () => (globalThis.__arabcodeRtl?.editor?.swapArrows(this) ? this.moveCursorLeft({ select: true }) : this.moveCursorRight({ select: true }))],
+       ["select-up", () => this.moveCursorUp({ select: true })],
+       ["select-down", () => this.moveCursorDown({ select: true })],
+       ["line-home", () => this.gotoLineHome()],
