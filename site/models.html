@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0c0a07">
+<meta name="description" content="النماذج والموديلات في arabcode — كيف تبدأ مجانًا، وكيف تربط OpenAI و Anthropic و Google والموديلات المحلية.">
+<title>arabcode — النماذج والموديلات</title>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav" aria-label="التنقل الرئيسي">
+    <a class="brand" href="index.html"><span class="glyph" aria-hidden="true">ع</span><span>arab<span class="dot">code</span></span></a>
+    <div class="nav-links">
+      <a href="index.html">الرئيسية</a>
+      <a href="models.html" class="active" aria-current="page">النماذج</a>
+      <a href="features.html">الميزات</a>
+      <a href="install.html">التثبيت</a>
+      <a class="gh" href="https://github.com/abdallhx2/arabcode" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        <span class="lbl">GitHub</span>
+      </a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">النماذج والموديلات</span>
+    <h1>ابدأ مجانًا، ثم اربط أي مزوّد تريده</h1>
+    <p class="tagline">arabcode يعتمد على <a href="https://ai-sdk.dev/" target="_blank" rel="noopener noreferrer">AI SDK</a> و<a href="https://models.dev" target="_blank" rel="noopener noreferrer">Models.dev</a> لدعم أكثر من 75 مزوّدًا للموديلات، ويشغّل الموديلات المحلية أيضًا. لست مقيّدًا بمزوّد واحد.</p>
+    <div class="pill-row" style="margin-top:1.4rem">
+      <a class="pill" href="#free">النماذج المجانية</a>
+      <a class="pill" href="#connect">ربط الموديلات والمزوّدون</a>
+      <a class="pill" href="#local">الموديلات المحلية</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION A: FREE MODELS ============ -->
+<section class="section" id="free">
+  <div class="wrap">
+    <span class="eyebrow">القسم الأول</span>
+    <h2 class="anchor-h">النماذج المجانية — كيف تبدأ دون بطاقة</h2>
+    <p class="lead">هناك عدد كبير من الموديلات، لكن قليلًا منها يعمل جيّدًا كوكيل برمجة. أسهل بداية هي النماذج المجانية المتاحة عبر بوّابة الموديلات — تجرّب arabcode كاملًا دون أي تكلفة ولا بطاقة ائتمان.</p>
+
+    <div class="note tip">
+      <span class="note-label">نصيحة</span>
+      إن كنت جديدًا على مزوّدي الـ LLM، ابدأ بأحد النماذج المجانية أدناه. لا تحتاج إلى بطاقة، ويمكنك الترقية لاحقًا لموديل أقوى بأمر واحد.
+    </div>
+
+    <h3>كيف تعمل</h3>
+    <ol class="steps">
+      <li>
+        <p>شغّل أمر الربط داخل الواجهة النصية (TUI)، واختر بوّابة النماذج المجانية:</p>
+        <div class="cmd"><code><span class="tok-prompt">/connect</span></code><button class="copy-btn" data-copy="/connect" aria-label="نسخ"><svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></button></div>
+      </li>
+      <li>
+        <p>سجّل الدخول والصق مفتاح الـ API عند الطلب. النماذج المجانية لا تتطلّب بطاقة أو رصيدًا.</p>
+        <pre class="code"><code>┌ API key
+│
+│
+└ enter</code></pre>
+      </li>
+      <li>
+        <p>اعرض قائمة الموديلات المتاحة واختر أحد المجّانية:</p>
+        <div class="cmd"><code><span class="tok-prompt">/models</span></code><button class="copy-btn" data-copy="/models" aria-label="نسخ"><svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></button></div>
+      </li>
+    </ol>
+
+    <h3>موديلات مجانية متاحة</h3>
+    <p class="dim">هذه نماذج مجانية لفترة محدودة، تُستخدم فترة التجربة لجمع الملاحظات وتحسين الموديل. الأسعار لكل مليون توكن.</p>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>الموديل</th><th>المعرّف (Model ID)</th><th>الإدخال</th><th>الإخراج</th></tr></thead>
+        <tbody>
+          <tr><td>DeepSeek V4 Flash Free</td><td><code>deepseek-v4-flash-free</code></td><td class="free-tag">مجاني</td><td class="free-tag">مجاني</td></tr>
+          <tr><td>MiMo-V2.5 Free</td><td><code>mimo-v2.5-free</code></td><td class="free-tag">مجاني</td><td class="free-tag">مجاني</td></tr>
+          <tr><td>North Mini Code Free</td><td><code>north-mini-code-free</code></td><td class="free-tag">مجاني</td><td class="free-tag">مجاني</td></tr>
+          <tr><td>Nemotron 3 Ultra Free</td><td><code>nemotron-3-ultra-free</code></td><td class="free-tag">مجاني</td><td class="free-tag">مجاني</td></tr>
+          <tr><td>Big Pickle</td><td><code>big-pickle</code></td><td class="free-tag">مجاني</td><td class="free-tag">مجاني</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">
+      <span class="note-label">خصوصية</span>
+      خلال الفترة المجانية قد تُستخدَم البيانات المُجمَّعة لتحسين الموديل. لا ترسل بيانات شخصية أو سرّية إلى النماذج المجانية. للمهام الحسّاسة استخدم موديلًا مدفوعًا بسياسة عدم الاحتفاظ (zero-retention).
+    </div>
+    <p>عندما تحتاج جودة أعلى، انتقل إلى موديل مدفوع (Claude أو GPT أو Gemini) بنفس الخطوات — أو اربط مفتاحك الخاص مباشرةً كما في القسم التالي.</p>
+  </div>
+</section>
+
+<!-- ============ SECTION B: CONNECTING PROVIDERS ============ -->
+<section class="section" id="connect">
+  <div class="wrap">
+    <span class="eyebrow">القسم الثاني</span>
+    <h2 class="anchor-h">ربط الموديلات والمزوّدون</h2>
+    <p class="lead">لإضافة مزوّد تحتاج خطوتين: أضف مفتاح الـ API عبر أمر الربط، ثم اضبط المزوّد في ملف الإعداد عند الحاجة. تُخزَّن المفاتيح محليًا في ملف <code class="inline">auth.json</code> ضمن مجلد بيانات arabcode.</p>
+
+    <h3>عبر سطر الأوامر</h3>
+    <p>يمكنك إدارة المصادقة من خارج الواجهة النصية أيضًا:</p>
+    <div class="code-block">
+      <button class="copy-btn" data-copy="arabcode auth login" aria-label="نسخ"><svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></button>
+      <div class="code-title">bash — إدارة المصادقة</div>
+      <pre class="code"><code>arabcode auth login     # اختر مزوّدًا وأدخل مفتاح الـ API
+arabcode auth list      # اعرض المزوّدين المسجّلين
+arabcode auth logout    # احذف بيانات اعتماد مزوّد</code></pre>
+    </div>
+
+    <div class="grid grid-2" style="margin-top:1.6rem">
+      <div class="card">
+        <h3><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg></span>OpenAI</h3>
+        <p>أنشئ مفتاحًا من لوحة OpenAI، ثم شغّل <code class="inline">/connect</code> واختر OpenAI والصق المفتاح. أو استخدم اشتراك <b>ChatGPT Plus/Pro</b> كمزوّد مصادقة مباشر دون إعداد.</p>
+      </div>
+      <div class="card">
+        <h3><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 3 20h18L12 3z"/></svg></span>Anthropic (Claude)</h3>
+        <p>شغّل <code class="inline">/connect</code> واختر Anthropic، ثم أدخِل مفتاح API. بعدها تظهر كل موديلات Claude في أمر <code class="inline">/models</code>.</p>
+      </div>
+      <div class="card">
+        <h3><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg></span>Google (Gemini)</h3>
+        <p>احصل على مفتاح من Google AI Studio، ثم <code class="inline">/connect</code> واختر Google والصق المفتاح. يدعم arabcode كذلك Vertex AI للاستخدام المؤسسي.</p>
+      </div>
+      <div class="card">
+        <h3><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>GitHub Copilot</h3>
+        <p>استخدم اشتراك Copilot (Pro/Business/Enterprise) كمزوّد مصادقة مباشر — بلا مفتاح API منفصل.</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top:2rem">ضبط المزوّد في ملف الإعداد</h3>
+    <p>خصّص أي مزوّد عبر قسم <code class="inline">provider</code> في ملف إعداد arabcode. مثال: تغيير عنوان القاعدة (baseURL) لتوجيه الطلبات عبر وسيط أو نقطة نهاية مخصّصة.</p>
+    <div class="code-block">
+      <button class="copy-btn" data-copy='{&#10;  "$schema": "https://opencode.ai/config.json",&#10;  "provider": {&#10;    "anthropic": {&#10;      "options": {&#10;        "baseURL": "https://api.anthropic.com/v1"&#10;      }&#10;    }&#10;  }&#10;}' aria-label="نسخ"><svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></button>
+      <div class="code-title">opencode.json — عنوان قاعدة مخصّص (صيغة إعداد موروثة)</div>
+      <pre class="code"><code>{
+  <span class="tk-key">"$schema"</span><span class="tk-punc">:</span> <span class="tk-str">"https://opencode.ai/config.json"</span><span class="tk-punc">,</span>
+  <span class="tk-key">"provider"</span><span class="tk-punc">:</span> {
+    <span class="tk-key">"anthropic"</span><span class="tk-punc">:</span> {
+      <span class="tk-key">"options"</span><span class="tk-punc">:</span> {
+        <span class="tk-key">"baseURL"</span><span class="tk-punc">:</span> <span class="tk-str">"https://api.anthropic.com/v1"</span>
+      }
+    }
+  }
+}</code></pre>
+    </div>
+    <div class="note">
+      <span class="note-label">اسم موروث</span>
+      صيغة ملف الإعداد ومخطّطه (<code class="inline">opencode.json</code>) موروثة من محرّك opencode الذي يبني عليه arabcode. احتفظ بها كما هي؛ فهي أسماء داخلية لا علامة تجارية.
+    </div>
+
+    <h3>إخفاء موديلات من القائمة</h3>
+    <p>استخدم <code class="inline">blacklist</code> لإزالة موديلات من منتقي <code class="inline">/models</code>، أو <code class="inline">whitelist</code> لإبقاء المدرَجة فقط.</p>
+    <div class="code-block">
+      <button class="copy-btn" data-copy='{&#10;  "provider": {&#10;    "anthropic": {&#10;      "whitelist": ["claude-sonnet-4-20250514"]&#10;    }&#10;  }&#10;}' aria-label="نسخ"><svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></button>
+      <div class="code-title">opencode.json — إبقاء موديل واحد فقط</div>
+      <pre class="code"><code>{
+  <span class="tk-key">"provider"</span><span class="tk-punc">:</span> {
+    <span class="tk-key">"anthropic"</span><span class="tk-punc">:</span> {
+      <span class="tk-key">"whitelist"</span><span class="tk-punc">:</span> [<span class="tk-str">"claude-sonnet-4-20250514"</span>]
+    }
+  }
+}</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOCAL MODELS ============ -->
+<section class="section" id="local">
+  <div class="wrap">
+    <span class="eyebrow">موديلات محلية</span>
+    <h2 class="anchor-h">شغّل موديلاتك على جهازك (self-hosted)</h2>
+    <p class="lead">يدعم arabcode أي خادم متوافق مع OpenAI — مثل Ollama و LM Studio و llama.cpp — عبر ضبط <code class="inline">baseURL</code> على نقطة النهاية المحلية، أو عبر متغيّر البيئة الموروث <code class="inline">LOCAL_ENDPOINT</code>.</p>
+
+    <div class="code-block">
+      <button class="copy-btn" data-copy='{&#10;  "$schema": "https://opencode.ai/config.json",&#10;  "provider": {&#10;    "ollama": {&#10;      "npm": "@ai-sdk/openai-compatible",&#10;      "name": "Ollama (local)",&#10;      "options": {&#10;        "baseURL": "http://localhost:11434/v1"&#10;      },&#10;      "models": {&#10;        "qwen3-coder": { "name": "Qwen3 Coder (local)" }&#10;      }&#10;    }&#10;  }&#10;}' aria-label="نسخ"><svg class="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></button>
+      <div class="code-title">opencode.json — موديل محلي عبر Ollama</div>
+      <pre class="code"><code>{
+  <span class="tk-key">"$schema"</span><span class="tk-punc">:</span> <span class="tk-str">"https://opencode.ai/config.json"</span><span class="tk-punc">,</span>
+  <span class="tk-key">"provider"</span><span class="tk-punc">:</span> {
+    <span class="tk-key">"ollama"</span><span class="tk-punc">:</span> {
+      <span class="tk-key">"npm"</span><span class="tk-punc">:</span> <span class="tk-str">"@ai-sdk/openai-compatible"</span><span class="tk-punc">,</span>
+      <span class="tk-key">"name"</span><span class="tk-punc">:</span> <span class="tk-str">"Ollama (local)"</span><span class="tk-punc">,</span>
+      <span class="tk-key">"options"</span><span class="tk-punc">:</span> {
+        <span class="tk-key">"baseURL"</span><span class="tk-punc">:</span> <span class="tk-str">"http://localhost:11434/v1"</span>
+      }<span class="tk-punc">,</span>
+      <span class="tk-key">"models"</span><span class="tk-punc">:</span> {
+        <span class="tk-key">"qwen3-coder"</span><span class="tk-punc">:</span> { <span class="tk-key">"name"</span><span class="tk-punc">:</span> <span class="tk-str">"Qwen3 Coder (local)"</span> }
+      }
+    }
+  }
+}</code></pre>
+    </div>
+
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>الخادم المحلي</th><th>نقطة النهاية الافتراضية</th><th>حزمة AI SDK</th></tr></thead>
+        <tbody>
+          <tr><td>Ollama</td><td><code>http://localhost:11434/v1</code></td><td><code>@ai-sdk/openai-compatible</code></td></tr>
+          <tr><td>LM Studio</td><td><code>http://127.0.0.1:1234/v1</code></td><td><code>@ai-sdk/openai-compatible</code></td></tr>
+          <tr><td>llama.cpp (llama-server)</td><td><code>http://127.0.0.1:8080/v1</code></td><td><code>@ai-sdk/openai-compatible</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note tip">
+      <span class="note-label">نصيحة</span>
+      إن لم تعمل استدعاءات الأدوات (tool calls) جيّدًا مع موديل محلي، اختر موديلًا بدعم قوي لاستدعاء الأدوات (مثل Qwen-Coder أو DeepSeek-Coder)، وزِد قيمة سياق النموذج (<code class="inline">num_ctx</code>) في Ollama إلى نحو 16k–32k.
+    </div>
+    <p class="dim" style="font-size:0.9rem"><code class="inline">LOCAL_ENDPOINT</code> و<code class="inline">OPENCODE_*</code> أسماء متغيّرات بيئة موروثة من opencode — احتفظ بها كما هي.</p>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-top">
+      <div style="max-width:34ch">
+        <a class="brand" href="index.html"><span class="glyph" aria-hidden="true">ع</span><span>arab<span class="dot">code</span></span></a>
+        <p class="dim" style="margin-top:0.6rem; font-size:0.9rem">أول أداة CLI ذكاء اصطناعي للطرفية بالعربية الكاملة.</p>
+      </div>
+      <nav class="foot-links" aria-label="روابط التذييل">
+        <a href="index.html">الرئيسية</a>
+        <a href="models.html">النماذج</a>
+        <a href="features.html">الميزات</a>
+        <a href="install.html">التثبيت</a>
+        <a href="landing/index.html">الصفحة التعريفية</a>
+        <a href="https://github.com/abdallhx2/arabcode" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </nav>
+    </div>
+    <p class="lineage">
+      arabcode يعرّب الطرفية بالكامل (اتجاه RTL + تشكيل عربي) — وهي إضافته الجوهرية فوق المحرّك. وهو <strong>مبني على <a href="https://opencode.ai" target="_blank" rel="noopener noreferrer">opencode</a> مفتوح المصدر</strong> — رخصة MIT. الميزات الموروثة هي من opencode؛ إسهام arabcode الأساسي هو طبقة العربية (الاتجاه والتشكيل والإدخال).
+    </p>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll(".copy-btn").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var text = btn.getAttribute("data-copy") || "";
+      var done = function () {
+        btn.classList.add("copied");
+        setTimeout(function () { btn.classList.remove("copied"); }, 1500);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(done);
+      } else { done(); }
+    });
+  });
+</script>
+</body>
+</html>

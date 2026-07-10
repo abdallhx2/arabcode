@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0c0a07">
+<meta name="description" content="ميزات arabcode — دعم العربية الكامل (RTL + تشكيل) كميزة جوهرية، فوق منظومة opencode الناضجة: مزوّدون متعدّدون، أوضاع Build/Plan، وكلاء، MCP، LSP وتكامل GitHub.">
+<title>arabcode — الميزات</title>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav" aria-label="التنقل الرئيسي">
+    <a class="brand" href="index.html"><span class="glyph" aria-hidden="true">ع</span><span>arab<span class="dot">code</span></span></a>
+    <div class="nav-links">
+      <a href="index.html">الرئيسية</a>
+      <a href="models.html">النماذج</a>
+      <a href="features.html" class="active" aria-current="page">الميزات</a>
+      <a href="install.html">التثبيت</a>
+      <a class="gh" href="https://github.com/abdallhx2/arabcode" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        <span class="lbl">GitHub</span>
+      </a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">دليل الميزات</span>
+    <h1>قوّة أداة برمجة حديثة — بالعربية الكاملة</h1>
+    <p class="tagline">arabcode مبني على محرّك <a href="https://opencode.ai" target="_blank" rel="noopener noreferrer">opencode</a> مفتوح المصدر، فيرث منظومة ميزات ناضجة ومختبَرة، ويضيف فوقها ما يميّزه فعليًا: عرضٌ صحيح للعربية داخل الطرفية.</p>
+    <div class="note tip" style="margin-top:1.4rem">
+      <span class="note-label">عن النسب</span>
+      الميزات الموروثة هي من opencode؛ وإسهام arabcode الأساسي هو طبقة العربية (الاتجاه والتشكيل والإدخال) المطبّقة فعليًا في هذا المستودع. لا يدّعي arabcode اختراع الميزات الموروثة.
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE #1 — Arabic (the differentiator) -->
+<section class="section">
+  <div class="wrap">
+    <div class="card highlight" style="padding:1.8rem">
+      <h2 style="margin-top:0"><span class="badge">ميزة arabcode المميِّزة</span></h2>
+      <h2 style="margin-top:0.3rem">١. دعم العربية الكامل (RTL + تشكيل)</h2>
+      <p class="dim" style="font-size:1.05rem; max-width:70ch">هذه هي الإضافة الحقيقية التي يقدّمها arabcode فوق opencode، وهي سبب وجوده — تجربة عربية أصيلة في الطرفية تقرأ فيها ردود الوكيل وتكتب طلباتك بالعربية دون حروف مقطّعة ولا اتجاه معكوس.</p>
+      <div class="grid grid-2" style="margin-top:1.2rem">
+        <div class="stack">
+          <p><b>صحة الاتجاه (RTL):</b> يُعرض النص العربي من اليمين إلى اليسار بشكل صحيح، مع معالجة سليمة للنصوص ثنائية الاتجاه (عربي مختلط بإنجليزي وأرقام ومقاطع كود).</p>
+          <p><b>التشكيل (Shaping):</b> ربط الحروف بأشكالها الصحيحة (بداية/وسط/نهاية/منفصلة) بدل عرضها متقطّعة كما في معظم أدوات الطرفية.</p>
+        </div>
+        <div class="stack">
+          <p><b>تحديد ونسخ منطقي:</b> عند تحديد نص عربي معروض بصريًا، يُنسخ إلى الحافظة بترتيبه المنطقي الصحيح فيلصق سليمًا في أي مكان.</p>
+          <p><b>إدخال عربي:</b> كتابة الأوامر والرسائل بالعربية داخل حقل الإدخال مع سلوك تحرير صحيح للاتجاه.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INHERITED FEATURES -->
+<section class="section">
+  <div class="wrap">
+    <span class="eyebrow">فوق ذلك — إرث opencode الناضج</span>
+    <h2>منظومة ميزات مختبَرة على نطاق واسع</h2>
+    <div class="grid grid-3" style="margin-top:1.4rem">
+
+      <div class="card feature">
+        <h3><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg></span>تعدّد مزوّدي الموديلات</h3>
+        <p>OpenAI و Anthropic و Google و AWS Bedrock و Groq و Azure و OpenRouter و Copilot وغيرها عبر Models.dev، وموديلات محلية عبر <code class="inline">LOCAL_ENDPOINT</code>. بدّل الموديل حسب المهمة.</p>
+      </div>
+
+      <div class="card feature">
+        <h3><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 17l6-6-6-6M12 19h8"/></svg></span>أوضاع Build / Plan</h3>
+        <p>وكيلان تتنقّل بينهما بمفتاح <code class="inline">Tab</code>: <b>build</b> وصول كامل للتعديل والتنفيذ، و<b>plan</b> قراءة فقط يقترح خطة دون لمس الملفات. راجع الخطة قبل التنفيذ.</p>
+      </div>
+
+      <div class="card feature">
+        <h3><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="17" r="3"/><path d="M6 21v-2a4 4 0 0 1 4-4"/></svg></span>الوكلاء المخصّصة</h3>
+        <p>أنشئ وكلاء عبر <code class="inline">arabcode agent create</code> بصلاحيات دقيقة (bash, read, edit, grep, webfetch…). فريق من الوكلاء المتخصّصين يعطي نتائج أدق لكل مجال.</p>
+      </div>
+
+      <div class="card feature">
+        <h3><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span>ملف AGENTS.md و<code class="inline">/init</code></h3>
+        <p>أمر <code class="inline">/init</code> يحلّل المشروع وينشئ ملف <code class="inline">AGENTS.md</code> يوثّق التقنيات وأسلوب الكود والبنية، ويُقرأ تلقائيًا في كل جلسة. لا تكرّر شرح قواعد مشروعك.</p>
+      </div>
+
+      <div class="card feature">
+        <h3><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9 9 0 0 0-6.4 2.6L3 8"/><path d="M3 3v5h5"/></svg></span>لقطات الجلسة والتراجع</h3>
+        <p>يحفظ arabcode لقطة لكل جلسة تسمح بالرجوع إلى أي رسالة سابقة، بما في ذلك استعادة تعديلات الملفات لحظة تلك النقطة — بدل التراجع خطوة بخطوة.</p>
+      </div>
+
+      <div class="card feature">
+        <h3><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><path d="M10 6.5h4a2 2 0 0 1 2 2V14"/></svg></span>دعم MCP و Code Mode</h3>
+        <p>إدارة كاملة لخوادم Model Context Protocol (محلية/بعيدة، OAuth، قوالب موارد)، و<b>Code Mode</b> لتشغيل سكربتات تنسيق مقيّدة فوق أدوات MCP بدل استدعائها واحدة تلو الأخرى.</p>
+      </div>
+
+      <div class="card feature">
+        <h3><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg></span>YOLO Mode</h3>
+        <p>وضع في الواجهة النصية يوافق تلقائيًا على كل طلبات الصلاحيات دون مقاطعتك — سرعة أكبر في المهام الموثوقة، يُستخدم بحذر في بيئات تثق فيها بالكود.</p>
+      </div>
+
+      <div class="card feature">
+        <h3><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v12H4z"/><path d="M8 20h8M12 16v4"/></svg></span>الأوامر المخصّصة</h3>
+        <p>ملفات Markdown تتحوّل إلى أوامر جاهزة، وتدعم متغيّرات بصيغة <code class="inline">$NAME</code> تُعبّئ عند التشغيل. حوّل المهام المتكررة إلى أمر واحد.</p>
+      </div>
+
+      <div class="card feature">
+        <h3><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h10"/></svg></span>أوضاع غير تفاعلية</h3>
+        <p><code class="inline">arabcode run</code> للسكربتات (مع JSON و<code class="inline">--replay</code>)، و<code class="inline">arabcode serve</code> خادم HTTP، و<code class="inline">arabcode web</code> واجهة ويب، و<code class="inline">--mini</code>، و<code class="inline">attach</code>، وخادم ACP.</p>
+      </div>
+
+      <div class="card feature">
+        <h3><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3v12a3 3 0 0 0 3 3h6"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="18" cy="18" r="2"/></svg></span>تكامل GitHub / GitLab</h3>
+        <p><code class="inline">arabcode github install</code> يهيّئ workflow آليًا، و<code class="inline">arabcode pr &lt;رقم&gt;</code> يجلب فرع الـ PR ويشغّل عليه. مراجعة كود آلية داخل خط CI/CD.</p>
+      </div>
+
+      <div class="card feature">
+        <h3><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m8 6 4-4 4 4M12 2v14M6 14l-2 6h16l-2-6"/></svg></span>تكامل LSP</h3>
+        <p>دعم Language Server Protocol لذكاء برمجي حقيقي — اقتراحات دقيقة، معرفة الأنواع، تنقّل في الكود — وليس مجرّد تحليل نصي. فهم أعمق يقلّل الأخطاء.</p>
+      </div>
+
+      <div class="card feature">
+        <h3><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>إدارة الجلسات والتكلفة</h3>
+        <p>عرض/حذف/تصدير الجلسات (JSON)، استنساخ workspace كامل، أمر <code class="inline">stats</code> لاستهلاك التوكنز والتكلفة، و<code class="inline">/share</code> لرابط مشاركة. شفافية كاملة على الإنفاق.</p>
+      </div>
+
+      <div class="card feature">
+        <h3><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 6v6c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6z"/></svg></span>نظام Skills</h3>
+        <p>اكتشاف تلقائي للـ skills والوكلاء المبنية على ملفات، مع حفظ المسارات كمسارات ملفات حقيقية. أعِد استخدام منطق متخصّص بدل إعادة شرحه.</p>
+      </div>
+
+      <div class="card feature">
+        <h3><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M3 9h6"/></svg></span>التوافق مع <code class="inline">.claude</code></h3>
+        <p>يقرأ arabcode مجلد <code class="inline">.claude</code> تلقائيًا (بما فيه CLAUDE.md والـ skills)، ويُتحكَّم به عبر متغيّرات موروثة مثل <code class="inline">OPENCODE_DISABLE_CLAUDE_CODE</code>. استخدم أدواتك السابقة بأقل تعديل.</p>
+      </div>
+
+      <div class="card feature">
+        <h3><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10h-10z"/><path d="M12 2v10h10"/></svg></span>Plugins و SDK</h3>
+        <p>نظام plugins قابل للتوسّع (hook APIs، واجهة V2 لـ Effect و Promise)، و SDK يعرض بثّ أحداث حيّ ووصولًا للجلسات النشطة وسجلًا مقسّمًا ونقاط صلاحيات. ابنِ فوق arabcode كمنصّة.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="section">
+  <div class="wrap">
+    <span class="eyebrow">لماذا arabcode؟</span>
+    <h2>أربعة أسباب في سطور</h2>
+    <ul class="feat-list" style="margin-top:1rem; max-width:840px">
+      <li><b>العربية الكاملة:</b> اتجاه RTL صحيح وتشكيل سليم وتحديد ونسخ منطقي وإدخال عربي — لا توفّره أدوات الطرفية الأخرى.</li>
+      <li><b>إرث opencode الناضج:</b> منظومة ميزات مختبَرة على نطاق واسع دون إعادة اختراع العجلة.</li>
+      <li><b>الأتمتة الشاملة:</b> أوضاع run/serve/web/ACP وتكامل GitHub تغطّي كل سيناريوهات السكربتات والإنتاج.</li>
+      <li><b>الاستقلالية عن المزوّد:</b> لست مقيّدًا بموديل أو شركة واحدة — بدّل بين المزوّدين والموديلات المحلية بحرية.</li>
+    </ul>
+    <p class="dim" style="margin-top:1rem">بما أن arabcode مبني على opencode ذي وتيرة التطوير النشطة، فمنظومة الميزات تتوسّع باستمرار — اعتبر هذه القائمة صورة حيّة للقدرات المتاحة.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="install.html">ثبّت arabcode</a>
+      <a class="btn btn-ghost" href="models.html">اربط موديلًا</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-top">
+      <div style="max-width:34ch">
+        <a class="brand" href="index.html"><span class="glyph" aria-hidden="true">ع</span><span>arab<span class="dot">code</span></span></a>
+        <p class="dim" style="margin-top:0.6rem; font-size:0.9rem">أول أداة CLI ذكاء اصطناعي للطرفية بالعربية الكاملة.</p>
+      </div>
+      <nav class="foot-links" aria-label="روابط التذييل">
+        <a href="index.html">الرئيسية</a>
+        <a href="models.html">النماذج</a>
+        <a href="features.html">الميزات</a>
+        <a href="install.html">التثبيت</a>
+        <a href="landing/index.html">الصفحة التعريفية</a>
+        <a href="https://github.com/abdallhx2/arabcode" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </nav>
+    </div>
+    <p class="lineage">
+      arabcode يعرّب الطرفية بالكامل (اتجاه RTL + تشكيل عربي) — وهي إضافته الجوهرية فوق المحرّك. وهو <strong>مبني على <a href="https://opencode.ai" target="_blank" rel="noopener noreferrer">opencode</a> مفتوح المصدر</strong> — رخصة MIT. الميزات الموروثة هي من opencode؛ إسهام arabcode الأساسي هو طبقة العربية (الاتجاه والتشكيل والإدخال).
+    </p>
+  </div>
+</footer>
+</body>
+</html>

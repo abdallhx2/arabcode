@@ -1,0 +1,595 @@
+/*
+ * arabcode theme — single source of truth for the token contract.
+ * Order: dark tokens (:root default) → light tokens ([data-theme="light"])
+ * → Arabic font/RTL wiring → component overrides.
+ * Builders A/C/D consume the --ac-* / --sl-color-* / --color-* names only.
+ * data-theme is always resolved to 'light' or 'dark' by Starlight's
+ * ThemeProvider — never use prefers-color-scheme here.
+ */
+
+/* ------------------------------------------------------------------ */
+/* 1. Dark tokens (default)                                            */
+/* ------------------------------------------------------------------ */
+
+:root,
+::backdrop {
+  /* --ac-* brand primitives (spec §1.1, dark) */
+  --ac-bg: #0c0a07;
+  --ac-panel: #14110b;
+  --ac-elevated: #1b1710;
+  --ac-border: #2a2418;
+  --ac-hairline: #201b12;
+  --ac-text: #ece7db;
+  --ac-text-dim: #b8b09c;
+  --ac-muted: #7d766a;
+  --ac-accent: #ffaf00;
+  --ac-accent-bright: #ffc23d;
+  --ac-accent-deep: #c98a00;
+  --ac-accent-soft: rgba(255, 175, 0, 0.11);
+  --ac-accent-line: rgba(255, 175, 0, 0.28);
+  --ac-code-bg: #0a0806;
+  --ac-code-fg: #e6ddcb;
+  --ac-diff-add: #57d38c;
+  --ac-diff-remove: #f2708a;
+  --ac-grid: rgba(255, 175, 0, 0.045);
+  --ac-on-accent: #1a1200;
+  --ac-radius: 10px;
+  --ac-radius-sm: 7px;
+  --ac-font-ui: "Segoe UI", system-ui, "Noto Kufi Arabic", "Noto Sans Arabic", Tahoma, sans-serif;
+  --ac-font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Code", "JetBrains Mono", Menlo, Consolas, monospace;
+
+  /* --sl-color-* mapping (spec §1.2, dark) */
+  --sl-color-white: #ece7db;
+  --sl-color-black: #0c0a07;
+  --sl-color-gray-1: #e8e2d2;
+  --sl-color-gray-2: #cfc7b2;
+  --sl-color-gray-3: #97907e;
+  --sl-color-gray-4: #4a4232;
+  --sl-color-gray-5: #2a2418;
+  --sl-color-gray-6: #14110b;
+  --sl-color-gray-7: #100d09;
+  --sl-color-accent-low: #3a2a00;
+  --sl-color-accent: #ffaf00;
+  --sl-color-accent-high: #ffc23d;
+  --sl-color-text: #d8d1bf;
+  --sl-color-text-accent: var(--ac-accent-bright);
+  --sl-color-text-invert: var(--ac-on-accent);
+  --sl-color-text-secondary: var(--ac-text-dim); /* toolbeam var */
+  --sl-color-text-dimmed: var(--ac-muted); /* toolbeam var */
+  --sl-color-bg: var(--ac-bg);
+  --sl-color-bg-nav: #0f0c08;
+  --sl-color-bg-sidebar: var(--ac-bg);
+  --sl-color-bg-inline-code: var(--ac-elevated);
+  --sl-color-bg-accent: var(--ac-accent);
+  --sl-color-bg-surface: var(--ac-panel); /* share components */
+  --sl-color-divider: var(--ac-border); /* share components */
+  --sl-color-hairline-light: #2a2418;
+  --sl-color-hairline: var(--ac-hairline);
+  --sl-color-hairline-shade: #0a0806;
+  --sl-color-border: var(--ac-border); /* toolbeam var */
+  /* semantic */
+  --sl-color-green-low: #1b3a28;
+  --sl-color-green: var(--ac-diff-add);
+  --sl-color-green-high: #86e2ae;
+  --sl-color-red-low: #3d1822;
+  --sl-color-red: var(--ac-diff-remove);
+  --sl-color-red-high: #f6a2b3;
+  --sl-color-orange-low: #33260e;
+  --sl-color-orange: #e0a94a;
+  --sl-color-orange-high: #edcc92;
+  /* GOLD REMAP of blue — share user-messages use blue vars; this brands
+     them without touching module files */
+  --sl-color-blue-low: rgba(255, 175, 0, 0.12);
+  --sl-color-blue: var(--ac-accent);
+  --sl-color-blue-high: var(--ac-accent-bright);
+  color-scheme: dark;
+
+  /* legacy app vars (spec §1.3) — names kept, values ride on --ac-*;
+     no separate light block needed, they resolve through --ac-* */
+  --color-background: var(--ac-bg);
+  --color-background-weak: var(--ac-panel);
+  --color-background-weak-hover: var(--ac-elevated);
+  --color-background-strong: var(--ac-text);
+  --color-background-strong-hover: var(--ac-accent-bright);
+  --color-background-interactive: var(--ac-accent-soft);
+  --color-background-interactive-weaker: var(--ac-accent-soft);
+  --color-text: var(--ac-text-dim);
+  --color-text-weak: var(--ac-muted);
+  --color-text-weaker: var(--ac-muted);
+  --color-text-strong: var(--ac-text);
+  --color-text-inverted: var(--ac-on-accent);
+  --color-border: var(--ac-border);
+  --color-border-weak: var(--ac-hairline);
+  --color-icon: var(--ac-muted);
+
+  --sl-nav-gap: 40px;
+}
+
+/* ------------------------------------------------------------------ */
+/* 2. Light tokens                                                     */
+/* ------------------------------------------------------------------ */
+
+:root[data-theme="light"],
+[data-theme="light"] ::backdrop {
+  /* --ac-* brand primitives (spec §1.1, light) */
+  --ac-bg: #faf6ec;
+  --ac-panel: #f4edda;
+  --ac-elevated: #ede4cb;
+  --ac-border: #d9cca9;
+  --ac-hairline: #e6dcc2;
+  --ac-text: #2b2416;
+  --ac-text-dim: #5c523c;
+  --ac-muted: #857a60;
+  --ac-accent: #c98a00;
+  --ac-accent-bright: #8a5c00;
+  --ac-accent-deep: #a36d00;
+  --ac-accent-soft: rgba(163, 109, 0, 0.1);
+  --ac-accent-line: rgba(163, 109, 0, 0.35);
+  --ac-code-bg: #f1e9d2;
+  --ac-code-fg: #3a3220;
+  --ac-diff-add: #1c7c47;
+  --ac-diff-remove: #b3264a;
+  --ac-grid: rgba(163, 109, 0, 0.05);
+  --ac-on-accent: #1a1200;
+
+  /* --sl-color-* mapping (spec §1.2, light) */
+  --sl-color-white: #2b2416;
+  --sl-color-black: #faf6ec;
+  --sl-color-gray-1: #3a3220;
+  --sl-color-gray-2: #5c523c;
+  --sl-color-gray-3: #857a60;
+  --sl-color-gray-4: #b3a889;
+  --sl-color-gray-5: #d9cca9;
+  --sl-color-gray-6: #efe7d0;
+  --sl-color-gray-7: #f6f0e0;
+  --sl-color-accent-low: #f3e2bd;
+  --sl-color-accent: #c98a00;
+  --sl-color-accent-high: #6e4900;
+  --sl-color-text: #3a3220;
+  --sl-color-text-accent: var(--ac-accent-bright); /* = #8a5c00 in light */
+  --sl-color-text-invert: #faf6ec;
+  --sl-color-text-secondary: var(--ac-text-dim);
+  --sl-color-text-dimmed: var(--ac-muted);
+  --sl-color-bg: var(--ac-bg);
+  --sl-color-bg-nav: #f6f0e0;
+  --sl-color-bg-sidebar: var(--ac-bg);
+  --sl-color-bg-inline-code: var(--ac-elevated);
+  --sl-color-bg-accent: var(--ac-accent);
+  --sl-color-bg-surface: var(--ac-panel);
+  --sl-color-divider: var(--ac-border);
+  --sl-color-hairline-light: #e6dcc2;
+  --sl-color-hairline: var(--ac-hairline);
+  --sl-color-hairline-shade: #e6dcc2;
+  --sl-color-border: var(--ac-border);
+  --sl-color-green-low: #d9efe1;
+  --sl-color-green: var(--ac-diff-add);
+  --sl-color-green-high: #14572f;
+  --sl-color-red-low: #f7dbe1;
+  --sl-color-red: var(--ac-diff-remove);
+  --sl-color-red-high: #7e1a34;
+  --sl-color-orange-low: #f3e4c8;
+  --sl-color-orange: #c77d1d;
+  --sl-color-orange-high: #7a4c0e;
+  --sl-color-blue-low: rgba(163, 109, 0, 0.1);
+  --sl-color-blue: var(--ac-accent);
+  --sl-color-blue-high: #8a5c00;
+  color-scheme: light;
+}
+
+/* ------------------------------------------------------------------ */
+/* 3. Arabic font + RTL wiring (spec B-6)                              */
+/* ------------------------------------------------------------------ */
+
+/* Arabic locale: humanist Arabic UI stack instead of IBM Plex Mono */
+:root[lang="ar"] {
+  --__sl-font: var(--ac-font-ui);
+}
+
+:root[lang="ar"] body {
+  letter-spacing: 0;
+}
+
+:root[lang="ar"] .sl-markdown-content {
+  line-height: 1.9;
+}
+
+/* code stays LTR everywhere, all locales */
+code,
+pre,
+kbd,
+samp {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+[dir="rtl"] .expressive-code {
+  direction: ltr;
+}
+
+/* ------------------------------------------------------------------ */
+/* 4. Component overrides                                              */
+/* ------------------------------------------------------------------ */
+
+body {
+  color: var(--color-text) !important;
+  font-size: 14px !important;
+}
+
+/* header (replaces old hash-scoped .header:where(.astro-*) rule) */
+body > .page > header {
+  border-bottom: 1px solid var(--ac-hairline) !important;
+}
+
+body > .page > header,
+:root[data-has-sidebar] body > .page > header {
+  background: color-mix(in srgb, var(--ac-bg) 92%, transparent) !important;
+  backdrop-filter: blur(10px);
+  padding: 24px !important;
+}
+
+.sl-markdown-content hr {
+  border-bottom: 1px solid var(--color-border-weak) !important;
+}
+
+#starlight__on-this-page--mobile {
+  border-bottom: 1px solid var(--color-border-weak) !important;
+}
+
+mobile-starlight-toc nav summary .toggle {
+  opacity: 60% !important;
+  text-decoration: none !important;
+}
+
+nav.sidebar summary svg.caret {
+  color: var(--color-icon) !important;
+}
+
+/* Search button style overrides */
+body > .page > header button[data-open-modal] > kbd {
+  position: relative;
+  display: flex;
+  gap: 4px;
+}
+body > .page > header button[data-open-modal] > kbd > kbd {
+  color: var(--color-icon) !important;
+  font-size: 15px;
+}
+/* Make the Cmd (⌘) keystroke bigger */
+body > .page > header button[data-open-modal][aria-keyshortcuts="Meta+K"] > kbd > kbd:first-child {
+  font-size: 20px;
+  line-height: 0.73;
+}
+
+/* search button — gold outline pill */
+body > .page > header button[data-open-modal] {
+  gap: 12px !important;
+  background: var(--ac-panel);
+  border: 1px solid var(--ac-border) !important;
+  padding: 6px 12px !important;
+  border-radius: var(--ac-radius-sm);
+}
+
+body > .page > header button[data-open-modal]:hover {
+  border-color: var(--ac-accent-deep) !important;
+  background: var(--ac-accent-soft);
+}
+
+/* theme select (B-4: defeats toolbeam's display:none) */
+starlight-theme-select {
+  display: contents;
+}
+
+starlight-theme-select select {
+  background: var(--ac-panel);
+  color: var(--ac-text-dim);
+  border: 1px solid var(--ac-border);
+  border-radius: var(--ac-radius-sm);
+}
+
+.starlight-aside__title {
+  flex: 0 0 auto;
+  margin-top: 3px;
+}
+
+body > .page > .main-frame .main-pane > main > .content-panel + .content-panel {
+  border-top: none !important;
+}
+
+body > .page > header a.site-title img {
+  height: 2rem !important;
+}
+
+a {
+  color: var(--color-text-strong) !important;
+}
+
+/* markdown links */
+.sl-markdown-content a {
+  color: var(--ac-accent-bright) !important;
+  text-underline-offset: 3px;
+}
+
+/* inline code */
+.sl-markdown-content code:not(pre code) {
+  background: var(--ac-elevated);
+  border: 1px solid var(--ac-hairline);
+  border-radius: 5px;
+  color: var(--ac-accent-bright);
+}
+
+.page-description {
+  color: var(--color-text) !important;
+}
+
+.right-sidebar {
+  border-inline-start: none !important;
+}
+
+.sidebar-pane {
+  border-inline-end: 1px solid var(--color-border-weak) !important;
+}
+
+.right-sidebar-panel {
+  padding: 24px 0 !important;
+  color: var(--color-text-weaker);
+}
+
+.sidebar-content {
+  padding: 24px 0 !important;
+}
+
+a[aria-current="page"] {
+  border-inline-start: 2px solid var(--ac-accent);
+  background: var(--color-background-weak) !important;
+  font-weight: 600 !important;
+}
+
+/* sidebar current page */
+nav.sidebar a[aria-current="page"],
+nav.sidebar a[aria-current="page"]:hover {
+  color: var(--ac-accent-bright) !important;
+  background: var(--ac-accent-soft) !important;
+  border-inline-start: 2px solid var(--ac-accent);
+}
+
+ul.top-level a[aria-current="page"] > span {
+  color: var(--ac-accent-bright) !important;
+}
+
+#starlight__sidebar > div > sl-sidebar-state-persist > ul > li > details > summary {
+  padding: 0 24px !important;
+  margin-top: 20px !important;
+}
+
+#starlight__sidebar > div > sl-sidebar-state-persist > ul > li > details > summary:hover {
+  background: var(--color-background-weak);
+}
+
+#starlight__sidebar > div > sl-sidebar-state-persist > ul > li > details > summary span {
+  color: var(--color-text-strong) !important;
+  font-weight: 600 !important;
+}
+
+.top-level li a {
+  border-radius: 0;
+  width: 100%;
+  padding: 4px 24px !important;
+}
+
+.top-level li a:hover {
+  background: var(--color-background-weak) !important;
+}
+
+.right-group {
+  gap: 40px !important;
+}
+
+.social-icons {
+  gap: 24px !important;
+}
+
+.social-icons a svg {
+  height: 18px !important;
+  width: 18px !important;
+}
+
+site-search > button {
+  text-transform: none !important;
+}
+
+site-search > button span {
+  text-decoration: none !important;
+}
+
+/* asides */
+.starlight-aside {
+  display: flex;
+  gap: 16px;
+  align-items: start;
+  border-inline-start: 3px solid var(--ac-accent-deep);
+  background: var(--ac-panel);
+  border-radius: var(--ac-radius-sm);
+
+  .starlight-aside__content {
+    margin-top: 0;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 6px;
+  }
+}
+
+site-search > button > kbd {
+  font-size: 14px !important;
+}
+
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+  color: var(--color-text-strong) !important;
+}
+
+h1 {
+  font-size: 26px !important;
+  text-transform: none !important;
+  font-weight: 500 !important;
+  color: var(--color-text-strong) !important;
+}
+
+h2 {
+  font-size: 22px !important;
+  text-transform: none !important;
+  font-weight: 500 !important;
+  color: var(--color-text-strong) !important;
+}
+
+h3 {
+  font-size: 18px !important;
+  text-transform: none !important;
+  font-weight: 500 !important;
+  color: var(--color-text-strong) !important;
+}
+
+h4 {
+  font-size: 16px !important;
+  text-transform: none !important;
+  font-weight: 500 !important;
+  color: var(--color-text-strong) !important;
+}
+
+strong {
+  font-weight: 500 !important;
+}
+
+ul,
+ol {
+  list-style: none !important;
+  padding: 0 !important;
+}
+
+.sl-markdown-content .tab > [role="tab"][aria-selected="true"] {
+  border-color: var(--color-text-strong);
+}
+
+.social-icons a svg {
+  color: var(--ac-muted) !important;
+}
+
+.social-icons a svg:hover {
+  color: var(--ac-accent-bright) !important;
+}
+
+.sl-container {
+  box-sizing: border-box !important;
+  width: 100% !important;
+}
+
+.right-sidebar-panel nav,
+.right-sidebar-panel h2,
+.right-sidebar-panel ul,
+.right-sidebar-panel li,
+.right-sidebar-panel a {
+  display: block;
+  width: 100%;
+}
+
+.sl-container {
+  max-width: 100% !important;
+}
+
+nav.sidebar .sl-container ul li a,
+div.right-sidebar .sl-container ul li a {
+  padding: 4px 24px !important;
+  width: 100% !important;
+  color: var(--color-text-weaker);
+  opacity: 50%;
+}
+
+nav.sidebar .sl-container ul li a:hover,
+div.right-sidebar .sl-container ul li a:hover {
+  background: var(--color-background-weak);
+}
+
+nav.sidebar .sl-container ul li ul li,
+div.right-sidebar .sl-container ul li ul li {
+  padding: 4px 12px 0 12px !important;
+}
+
+nav.sidebar .sl-container ul li a[aria-current="true"],
+div.right-sidebar .sl-container ul li a[aria-current="true"] {
+  color: var(--color-text-strong) !important;
+  opacity: 100%;
+}
+
+h2#starlight__on-this-page {
+  font-size: 14px !important;
+  color: var(--color-text-strong) !important;
+  margin: 0 !important;
+  font-weight: 400 !important;
+  padding: 0 24px 12px 24px;
+}
+
+#starlight__on-this-page ul {
+  color: var(--color-text-strong) !important;
+  font-size: 16px !important;
+}
+
+.middle-group .links {
+  color: var(--color-icon);
+  text-decoration: none;
+  text-transform: none;
+  font-size: 16px;
+  display: none !important;
+}
+
+.middle-group .links:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+}
+
+nav.sidebar ul.top-level > li > details > summary .group-label > span {
+  margin-top: 24px !important;
+  color: var(--color-text-strong) !important;
+  text-transform: none !important;
+  font-weight: 500 !important;
+}
+
+.content-panel {
+  padding: 2rem 3rem !important;
+
+  @media (max-width: 768px) {
+    padding: 1rem 1.5rem !important;
+  }
+}
+
+/* expressive-code / shiki (B-3) */
+.expressive-code {
+  margin: 0.75rem 0 3rem 0 !important;
+  border-radius: var(--ac-radius-sm);
+}
+
+.expressive-code figure {
+  background: var(--ac-code-bg) !important;
+}
+
+.expressive-code .frame {
+  box-shadow: none;
+  border: 1px solid var(--ac-border);
+  border-radius: var(--ac-radius-sm);
+}
+
+/* Share/marked shiki output embeds dual-theme vars; key them off the
+   resolved data-theme attribute (never prefers-color-scheme) */
+[data-theme="dark"] .shiki,
+[data-theme="dark"] .shiki span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+  font-style: var(--shiki-dark-font-style) !important;
+  font-weight: var(--shiki-dark-font-weight) !important;
+  text-decoration: var(--shiki-dark-text-decoration) !important;
+}
