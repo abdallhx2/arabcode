@@ -192,6 +192,11 @@ export const run = Effect.fn("Tui.run")(function* (input: TuiInput) {
     Effect.gen(function* () {
       // تحويل RTL على مستوى التطبيق: يجب تركيبه قبل بناء أي مكوّن نصي
       const rtlActive = installRtlHooks()
+      // وضع BiDi explicit يُبثّ قبل إنشاء الـ renderer (قبل دخول الشاشة البديلة):
+      // VTE يختم كل سطر بحالة BiDi لحظة إنشائه عند دخول 1049h — تأكيدٌ لاحق
+      // لا يعالج الأسطر المختومة ضمنياً فيظهر العربي معكوساً في أول تشغيل.
+      // لا سباق هنا: قناة الكتابة الأصلية لم تُنشأ بعد، وstdout متزامن.
+      if (rtlActive) process.stdout.write(BIDI_EXPLICIT_ENTER)
       const renderer = yield* Effect.acquireRelease(
         Effect.tryPromise({
           try: () =>
@@ -212,11 +217,12 @@ export const run = Effect.fn("Tui.run")(function* (input: TuiInput) {
         }),
         (renderer) =>
           Effect.sync(() => {
-            if (rtlActive) {
-              writeRendererEscape(renderer, BIDI_EXPLICIT_EXIT)
-              uninstallRtlHooks()
-            }
+            if (rtlActive) uninstallRtlHooks()
             destroyRenderer(renderer)
+            // الاستعادة بعد تدمير الـ renderer عبر stdout مباشرة: الكتابة عبر
+            // writeOut كانت تموت مع خيط الكتابة قبل التدفق فيتسرّب وضع explicit
+            // إلى صدفة المستخدم (وكان التسريب يخفي خلل الترتيب في التشغيل الثاني).
+            if (rtlActive) process.stdout.write(BIDI_EXPLICIT_EXIT)
           }),
       )
       // وضع BiDi explicit: يمنع الطرفيات الداعمة (VTE) من إعادة ترتيب ترتيبنا.
