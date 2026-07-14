@@ -83,7 +83,7 @@ import type { EventSource } from "./context/sdk"
 import { DialogVariant } from "./component/dialog-variant"
 import { createTuiAttention } from "./attention"
 import * as TuiAudio from "./audio"
-import { win32DisableProcessedInput, win32FlushInputBuffer } from "./terminal-win32"
+import { win32DisableProcessedInput, win32FlushInputBuffer, win32IsLegacyConsole } from "./terminal-win32"
 import { destroyRenderer } from "./util/renderer"
 import { cliErrorMessage, errorFormat } from "./util/error"
 import { BIDI_EXPLICIT_ENTER, BIDI_EXPLICIT_EXIT } from "./util/rtl"
@@ -192,6 +192,11 @@ export const run = Effect.fn("Tui.run")(function* (input: TuiInput) {
     Effect.gen(function* () {
       // تحويل RTL على مستوى التطبيق: يجب تركيبه قبل بناء أي مكوّن نصي
       const rtlActive = installRtlHooks()
+      // وضع BiDi explicit يُبثّ قبل إنشاء الـ renderer (قبل دخول الشاشة البديلة):
+      // VTE يختم كل سطر بحالة BiDi لحظة إنشائه عند دخول 1049h — تأكيدٌ لاحق
+      // لا يعالج الأسطر المختومة ضمنياً فيظهر العربي معكوساً في أول تشغيل.
+      // لا سباق هنا: قناة الكتابة الأصلية لم تُنشأ بعد، وstdout متزامن.
+      if (rtlActive) process.stdout.write(BIDI_EXPLICIT_ENTER)
       const renderer = yield* Effect.acquireRelease(
         Effect.tryPromise({
           try: () =>
@@ -212,11 +217,12 @@ export const run = Effect.fn("Tui.run")(function* (input: TuiInput) {
         }),
         (renderer) =>
           Effect.sync(() => {
-            if (rtlActive) {
-              writeRendererEscape(renderer, BIDI_EXPLICIT_EXIT)
-              uninstallRtlHooks()
-            }
+            if (rtlActive) uninstallRtlHooks()
             destroyRenderer(renderer)
+            // الاستعادة بعد تدمير الـ renderer عبر stdout مباشرة: الكتابة عبر
+            // writeOut كانت تموت مع خيط الكتابة قبل التدفق فيتسرّب وضع explicit
+            // إلى صدفة المستخدم (وكان التسريب يخفي خلل الترتيب في التشغيل الثاني).
+            if (rtlActive) process.stdout.write(BIDI_EXPLICIT_EXIT)
           }),
       )
       // وضع BiDi explicit: يمنع الطرفيات الداعمة (VTE) من إعادة ترتيب ترتيبنا.
@@ -434,6 +440,17 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
     .finally(() => {
       setReady(true)
     })
+
+  // conhost القديم (cmd/PowerShell بلا Windows Terminal) لا يملك font fallback
+  // للعربية فتظهر مربعات مهما فعلنا — التنبيه بالإنجليزية لأنها الوحيدة المقروءة هناك.
+  if (win32IsLegacyConsole()) {
+    toast.show({
+      title: "Arabic display",
+      message: "This console cannot show Arabic characters (no font fallback). Run arabcode inside Windows Terminal instead.",
+      variant: "warning",
+      duration: 15000,
+    })
+  }
 
   // Let selection copy/dismiss win ahead of normal bindings when explicit copy is required.
   const offSelectionKeys = keymap.intercept(
@@ -835,7 +852,7 @@ function App(props: { onSnapshot?: () => Promise<string[]>; pluginHost: TuiPlugi
         name: "docs.open",
         title: "فتح الوثائق",
         run: () => {
-          open("https://opencode.ai/docs").catch(() => {})
+          open("https://github.com/abdallhx2/arabcode").catch(() => {})
           dialog.clear()
         },
         category: "النظام",

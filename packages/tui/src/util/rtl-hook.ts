@@ -12,7 +12,7 @@
  * النص المنطقي الأصلي يُحفظ على المكوّن ويُعاد التحويل منه دائماً
  * (التحويل ليس idempotent).
  */
-import { StyledText, type TextChunk } from "@opentui/core"
+import { StyledText, TextRenderable, type TextChunk } from "@opentui/core"
 import { BIDI_EXPLICIT_ENTER, buildSelectionMap, hasRtl, rtlMode, sliceLogicalBySelection, transformChunks, visualLine, type SelectionMap } from "./rtl"
 import { editorHooks } from "./rtl-editor"
 
@@ -109,8 +109,10 @@ function installSelection(renderable: unknown): void {
 }
 
 function transform(st: StyledText, renderable: unknown): StyledText | undefined {
-  const r = renderable as RtlTextRenderable
-  if (r?.constructor?.name !== "TextRenderable") return undefined
+  // ليس فحص constructor.name: التصغير في بناء الإنتاج يغيّر أسماء الأصناف
+  // فيتحول التحويل إلى no-op في الثنائية المنشورة فقط (يعمل في التطوير).
+  if (!(renderable instanceof TextRenderable)) return undefined
+  const r = renderable as unknown as RtlTextRenderable
   const plain = plainText(st)
   if (!hasRtl(plain)) {
     // محتوى سابق كان عربياً وتبدّل: استعادة الالتفاف الأصلي
@@ -223,8 +225,8 @@ function resize(renderable: unknown, width: number): void {
     }
     return
   }
-  const r = renderable as RtlTextRenderable
-  if (r?.constructor?.name !== "TextRenderable") return
+  if (!(renderable instanceof TextRenderable)) return
+  const r = renderable as unknown as RtlTextRenderable
   if (!r.__rtlSource || width <= 0 || width === r.__rtlWidth) return
   r.__rtlWidth = width
   if (!r.__rtlWrapped) {

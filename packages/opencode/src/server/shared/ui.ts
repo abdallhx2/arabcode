@@ -2,6 +2,9 @@ import { FSUtil } from "@opencode-ai/core/fs-util"
 import { Effect, Stream } from "effect"
 import { HttpBody, HttpClient, HttpClientRequest, HttpServerRequest, HttpServerResponse } from "effect/unstable/http"
 import { createHash } from "node:crypto"
+import { existsSync, readdirSync } from "node:fs"
+import nodePath from "node:path"
+import { fileURLToPath } from "node:url"
 import { ProxyUtil } from "../proxy-util"
 
 let embeddedUIPromise: Promise<Record<string, string> | null> | undefined
@@ -48,6 +51,40 @@ export function embeddedUI(disableEmbeddedWebUi: boolean) {
     import("opencode-web-ui.gen.ts").then((module) => module.default as Record<string, string>).catch(() => null))
 }
 
+let localDistCache: Record<string, string> | null | undefined
+
+/** Directory holding a locally built web UI (packages/app/dist) — used when
+ * running from source, where no embedded UI was generated. Overridable via
+ * ARABCODE_WEB_DIST. */
+export function localDistDir() {
+  const env = process.env["ARABCODE_WEB_DIST"]
+  if (env) return env
+  const here = nodePath.dirname(fileURLToPath(import.meta.url))
+  // here = packages/opencode/src/server/shared → ../../../.. = packages
+  return nodePath.resolve(here, "../../../..", "app", "dist")
+}
+
+export function buildDistMap(dir: string): Record<string, string> | null {
+  try {
+    if (!existsSync(nodePath.join(dir, "index.html"))) return null
+    const map: Record<string, string> = {}
+    for (const entry of readdirSync(dir, { recursive: true, withFileTypes: true })) {
+      if (!entry.isFile()) continue
+      const abs = nodePath.join(entry.parentPath, entry.name)
+      map[nodePath.relative(dir, abs).replaceAll("\\", "/")] = abs
+    }
+    return map
+  } catch {
+    return null
+  }
+}
+
+export function localDistUI() {
+  if (localDistCache !== undefined) return localDistCache
+  localDistCache = buildDistMap(localDistDir())
+  return localDistCache
+}
+
 function notFound() {
   return HttpServerResponse.jsonUnsafe({ error: "Not Found" }, { status: 404 })
 }
@@ -84,6 +121,9 @@ export function serveUIEffect(
     const path = new URL(request.url, "http://localhost").pathname
 
     if (embeddedWebUI) return yield* serveEmbeddedUIEffect(path, services.fs, embeddedWebUI)
+
+    const localUI = localDistUI()
+    if (localUI) return yield* serveEmbeddedUIEffect(path, services.fs, localUI)
 
     const response = yield* services.client.execute(
       HttpClientRequest.make(request.method)(upstreamURL(path), {

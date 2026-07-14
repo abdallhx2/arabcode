@@ -46,6 +46,7 @@ function knownThemes() {
 const names: Record<string, string> = {
   "oc-2": "OC-2",
   amoled: "AMOLED",
+  arabcode: "arabcode",
   aura: "Aura",
   ayu: "Ayu",
   carbonfox: "Carbonfox",
@@ -69,7 +70,7 @@ const names: Record<string, string> = {
   nord: "Nord",
   "one-dark": "One Dark",
   onedarkpro: "One Dark Pro",
-  opencode: "OpenCode",
+  opencode: "كلاسيكي",
   orng: "Orng",
   "osaka-jade": "Osaka Jade",
   palenight: "Palenight",
@@ -152,11 +153,11 @@ function applyThemeCss(theme: DesktopTheme, themeId: string, mode: "light" | "da
   ensureThemeStyleElement().textContent = fullCss
   document.documentElement.dataset.theme = themeId
   document.documentElement.dataset.colorScheme = mode
-  document.documentElement.style.backgroundColor = isDark ? "#080808" : "#fafafa"
+  document.documentElement.style.backgroundColor = isDark ? "#171207" : "#f6efe2"
 
   // Update theme-color meta tag to match light/dark mode
   const meta = document.querySelector('meta[name="theme-color"]')
-  if (meta) meta.setAttribute("content", isDark ? "#080808" : "#fafafa")
+  if (meta) meta.setAttribute("content", isDark ? "#171207" : "#f6efe2")
 }
 
 function cacheThemeVariants(theme: DesktopTheme, themeId: string) {

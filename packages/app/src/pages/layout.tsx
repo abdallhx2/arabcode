@@ -1552,7 +1552,7 @@ export default function LegacyLayout(props: ParentProps) {
 
     return (
       <Dialog title={language.t("workspace.delete.title")} fit>
-        <div class="flex flex-col gap-4 pl-6 pr-2.5 pb-3">
+        <div class="flex flex-col gap-4 ps-6 pe-2.5 pb-3">
           <div class="flex flex-col gap-1">
             <span class="text-14-regular text-text-strong">
               {language.t("workspace.delete.confirm", { name: name() })}
@@ -1626,7 +1626,7 @@ export default function LegacyLayout(props: ParentProps) {
 
     return (
       <Dialog title={language.t("workspace.reset.title")} fit>
-        <div class="flex flex-col gap-4 pl-6 pr-2.5 pb-3">
+        <div class="flex flex-col gap-4 ps-6 pe-2.5 pb-3">
           <div class="flex flex-col gap-1">
             <span class="text-14-regular text-text-strong">
               {language.t("workspace.reset.confirm", { name: name() })}
@@ -1967,7 +1967,7 @@ export default function LegacyLayout(props: ParentProps) {
         classList={{
           "flex flex-col min-h-0 min-w-0 box-border rounded-tl-[12px] px-3": true,
           "border border-b-0 border-border-weak-base": !merged(),
-          "border-l border-t border-border-weaker-base": merged(),
+          "border-s border-t border-border-weaker-base": merged(),
           "bg-background-base": merged() || hover(),
           "bg-background-stronger": !merged() && !hover(),
           "flex-1 min-w-0": panelProps.mobile,
@@ -2000,8 +2000,8 @@ export default function LegacyLayout(props: ParentProps) {
         >
           {(project) => (
             <>
-              <div class="shrink-0 pl-1 py-1">
-                <div class="group/project flex items-start justify-between gap-2 py-2 pl-2 pr-0">
+              <div class="shrink-0 ps-1 py-1">
+                <div class="group/project flex items-start justify-between gap-2 py-2 ps-2 pe-0">
                   <div class="flex flex-col min-w-0">
                     <InlineEditor
                       id={`project:${projectId()}`}
@@ -2260,7 +2260,7 @@ export default function LegacyLayout(props: ParentProps) {
               data-component="sidebar-nav-desktop"
               classList={{
                 "hidden xl:block": true,
-                "absolute inset-y-0 left-0": true,
+                "absolute inset-y-0 start-0": true,
                 "z-10": true,
               }}
               style={{ width: `${side()}px` }}
@@ -2302,7 +2302,7 @@ export default function LegacyLayout(props: ParentProps) {
             </Show>
 
             <div
-              class="hidden xl:block pointer-events-none absolute top-0 right-0 z-0 border-t border-border-weaker-base"
+              class="hidden xl:block pointer-events-none absolute top-0 end-0 z-0 border-t border-border-weaker-base"
               style={{ left: "calc(4rem + 12px)" }}
             />
 
@@ -2321,7 +2321,7 @@ export default function LegacyLayout(props: ParentProps) {
                 aria-label={language.t("sidebar.nav.projectsAndSessions")}
                 data-component="sidebar-nav-mobile"
                 classList={{
-                  "@container fixed top-10 bottom-0 left-0 z-50 w-full max-w-[400px] overflow-hidden border-r border-border-weaker-base bg-background-base transition-transform duration-200 ease-out": true,
+                  "@container fixed top-10 bottom-0 start-0 z-50 w-full max-w-[400px] overflow-hidden border-e border-border-weaker-base bg-background-base transition-transform duration-200 ease-out": true,
                   "translate-x-0": layout.mobileSidebar.opened(),
                   "-translate-x-full": !layout.mobileSidebar.opened(),
                 }}
@@ -2334,7 +2334,7 @@ export default function LegacyLayout(props: ParentProps) {
             <div
               classList={{
                 "absolute inset-0": true,
-                "xl:inset-y-0 xl:right-0 xl:left-[var(--main-left)]": true,
+                "xl:inset-y-0 xl:end-0 xl:start-[var(--main-left)]": true,
                 "z-20": true,
                 "transition-[left] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-[left] motion-reduce:transition-none":
                   !state.sizing,
@@ -2345,7 +2345,7 @@ export default function LegacyLayout(props: ParentProps) {
             >
               <main
                 classList={{
-                  "size-full overflow-x-hidden flex flex-col items-start contain-strict border-t border-border-weak-base bg-background-base xl:border-l xl:rounded-tl-[12px]": true,
+                  "size-full overflow-x-hidden flex flex-col items-start contain-strict border-t border-border-weak-base bg-background-base xl:border-s xl:rounded-tl-[12px]": true,
                 }}
               >
                 <Show when={!autoselecting.loading} fallback={<div class="size-full" />}>
@@ -2356,7 +2356,7 @@ export default function LegacyLayout(props: ParentProps) {
 
             <div
               classList={{
-                "hidden xl:flex absolute inset-y-0 left-16 z-30": true,
+                "hidden xl:flex absolute inset-y-0 start-16 z-30": true,
                 "opacity-100 translate-x-0 pointer-events-auto": state.peeked && !layout.sidebar.opened(),
                 "opacity-0 -translate-x-2 pointer-events-none": !state.peeked || layout.sidebar.opened(),
                 "transition-[opacity,transform] motion-reduce:transition-none": true,
@@ -2380,7 +2380,7 @@ export default function LegacyLayout(props: ParentProps) {
 
             <div
               classList={{
-                "hidden xl:block pointer-events-none absolute inset-y-0 right-0 z-25 overflow-hidden": true,
+                "hidden xl:block pointer-events-none absolute inset-y-0 end-0 z-25 overflow-hidden": true,
                 "opacity-100 translate-x-0": state.peeked && !layout.sidebar.opened(),
                 "opacity-0 -translate-x-2": !state.peeked || layout.sidebar.opened(),
                 "transition-[opacity,transform] motion-reduce:transition-none": true,
