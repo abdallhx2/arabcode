@@ -18,7 +18,6 @@ import { makeEventListener } from "@solid-primitives/event-listener"
 import { createStore, produce } from "solid-js/store"
 import { useQuery } from "@tanstack/solid-query"
 import { Button } from "@opencode-ai/ui/button"
-import { Logo } from "@opencode-ai/ui/logo"
 import { Spinner } from "@opencode-ai/ui/spinner"
 import { ScrollView } from "@opencode-ai/ui/scroll-view"
 import { ProjectAvatar } from "@opencode-ai/ui/v2/project-avatar-v2"
@@ -1582,8 +1581,13 @@ export function LegacyHome() {
   }
 
   return (
-    <div class="mx-auto mt-55 w-full md:w-auto px-4">
-      <Logo class="md:w-xl opacity-12" />
+    <div class="mx-auto mt-40 w-full md:w-auto px-4">
+      <div data-component="home-hero">
+        <img data-slot="home-hero-wordmark" src="/assets/arabcode-wordmark.png" alt="arabcode" />
+        <img data-slot="home-hero-wordmark-light" src="/assets/arabcode-wordmark-light.png" alt="arabcode" />
+        <div data-slot="home-hero-tagline">طرفية الذكاء الاصطناعي — بالعربية الكاملة</div>
+        <div data-slot="home-hero-rule" />
+      </div>
       <Button
         size="large"
         variant="ghost"
@@ -1616,17 +1620,19 @@ export function LegacyHome() {
             <ul class="flex flex-col gap-2">
               <For each={recent()}>
                 {(project) => (
-                  <Button
-                    size="large"
-                    variant="ghost"
-                    class="text-14-mono text-start justify-between px-3"
-                    onClick={() => openProject(server.current!, project.worktree)}
-                  >
-                    {project.worktree.replace(homedir(), "~")}
-                    <div class="text-14-regular text-text-weak">
-                      {DateTime.fromMillis(project.time.updated ?? project.time.created).toRelative()}
-                    </div>
-                  </Button>
+                  <div data-component="home-project-card">
+                    <Button
+                      size="large"
+                      variant="ghost"
+                      class="text-14-mono text-start justify-between px-3 w-full"
+                      onClick={() => openProject(server.current!, project.worktree)}
+                    >
+                      {project.worktree.replace(homedir(), "~")}
+                      <div class="text-14-regular text-text-weak">
+                        {DateTime.fromMillis(project.time.updated ?? project.time.created).toRelative()}
+                      </div>
+                    </Button>
+                  </div>
                 )}
               </For>
             </ul>
