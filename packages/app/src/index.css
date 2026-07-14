@@ -74,7 +74,7 @@
   }
 
   [data-slot="desktop-app-menu-keybind"] {
-    margin-left: auto;
+    margin-inline-start: auto;
     color: var(--text-weak);
     font-size: var(--font-size-x-small);
     font-weight: var(--font-weight-regular);
@@ -83,7 +83,7 @@
 
   [data-slot="desktop-app-menu-chevron"] {
     display: flex;
-    margin-left: auto;
+    margin-inline-start: auto;
     color: var(--icon-base);
   }
 
@@ -326,5 +326,38 @@
       animation-timeline: --manage-models-scroll;
       animation-range: 0 0.1px;
     }
+  }
+}
+
+@layer components {
+  /* arabcode RTL: code, terminals, diffs and file paths are inherently LTR.
+     Real component/slot names verified against the source (not guessed):
+     - [data-component="terminal"]      Terminal canvas root (packages/app/src/components/terminal.tsx)
+     - [data-component="file"]          file/diff viewer, both text and diff modes (session-ui file.tsx / file-ssr.tsx)
+     - [data-component="diff-changes"]  diff summary bars (packages/ui/src/components/diff-changes.tsx)
+     - [data-component="markdown-code"] fenced code block wrapper (session-ui markdown.tsx)
+     - [data-slot="message-part-path"], [data-slot="session-turn-diff-path"],
+       [data-slot="line-comment-mention-path"]  file paths shown in chat/diff/mention UI */
+  [dir="rtl"] pre,
+  [dir="rtl"] code,
+  [dir="rtl"] kbd,
+  [dir="rtl"] samp,
+  [dir="rtl"] [data-component="terminal"],
+  [dir="rtl"] [data-component="file"],
+  [dir="rtl"] [data-component="diff-changes"],
+  [dir="rtl"] [data-component="markdown-code"],
+  [dir="rtl"] [data-slot="message-part-path"],
+  [dir="rtl"] [data-slot="session-turn-diff-path"],
+  [dir="rtl"] [data-slot="line-comment-mention-path"] {
+    direction: ltr;
+    text-align: left;
+    unicode-bidi: isolate;
+  }
+
+  /* Mixed-language chat text resolves direction per paragraph rather than
+     inheriting a blanket rtl, so Arabic and English text parts each read
+     in their natural direction. */
+  [dir="rtl"] [data-component="text-part"] {
+    unicode-bidi: plaintext;
   }
 }
