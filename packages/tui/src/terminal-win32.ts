@@ -53,6 +53,17 @@ export function win32FlushInputBuffer() {
   k32!.symbols.FlushConsoleInputBuffer(handle)
 }
 
+/**
+ * Heuristic: running inside the legacy console host (conhost) rather than a
+ * modern terminal. Legacy conhost cannot font-fallback to Arabic glyphs, so
+ * Arabic text renders as boxes there regardless of what the app emits.
+ */
+export function win32IsLegacyConsole(): boolean {
+  if (process.platform !== "win32") return false
+  const env = process.env
+  return !env["WT_SESSION"] && !env["TERM_PROGRAM"] && !env["ConEmuANSI"] && !env["WEZTERM_EXECUTABLE"] && !env["ALACRITTY_WINDOW_ID"]
+}
+
 let unhook: (() => void) | undefined
 
 /**
