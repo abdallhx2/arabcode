@@ -179,7 +179,7 @@ Notes: `stage` kept for future SST use is optional — drop it if unused (it wil
 
 ### A-3 `package.json`
 
-- `"name": "@opencode-ai/web"` → `"name": "@arabcode/web"`.
+- `"name": "@arabcode/web"` → `"name": "@arabcode/web"`.
 - `"dev:remote"` script: keep as-is (VITE_API_URL still points at the live opencode share API — functional requirement, not branding).
 - Do NOT touch the `"opencode": "workspace:*"` devDependency (type imports in Share/part/[id].astro resolve through it).
 

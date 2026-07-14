@@ -14,7 +14,7 @@
 
 - Branch `arabcode`. The worktree has extensive unrelated uncommitted changes — **NEVER `git add -A` / `git add .`**; always add named files only.
 - i18n: `packages/app/src/i18n/parity.test.ts` enforces identical keys across locales — **change values only, never add/remove keys**.
-- Keep unchanged: package names `@opencode-ai/*`, localStorage keys (`opencode-theme-id`, `opencode.global.dat:*`, `opencode-theme-css-*`), env vars `OPENCODE_*`, cookie `oc_locale`, CSS var prefixes `--v2-*`/`oc-`.
+- Keep unchanged: package names `@arabcode/*`, localStorage keys (`opencode-theme-id`, `opencode.global.dat:*`, `opencode-theme-css-*`), env vars `OPENCODE_*`, cookie `oc_locale`, CSS var prefixes `--v2-*`/`oc-`.
 - Keep proper nouns of external services: "OpenCode Zen", "OpenCode Go", URL `opencode.ai/zen`, filename `opencode.json` (config file name is still real). Standalone product-name "OpenCode" → "arabcode".
 - Brand color tokens: gold bright `#ffaf00`, gold deep `#c98a00`, warm black `#171207`, badge black `#0c0a07`, warm paper `#f6efe2`.
 - Logo source assets: `/home/abotrf/Desktop/arabcode-landing/assets/{logo.png,logoS.png,favicon.svg}` (PNGs have **opaque black** backgrounds — must be processed to transparent before UI use).

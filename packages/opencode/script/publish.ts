@@ -1,7 +1,7 @@
 #!/usr/bin/env bun
 import { $ } from "bun"
 import pkg from "../package.json"
-import { Script } from "@opencode-ai/script"
+import { Script } from "@arabcode/script"
 import { fileURLToPath } from "url"
 import * as brand from "../brand.ts"
 

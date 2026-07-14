@@ -3,8 +3,8 @@ import fs from "fs/promises"
 import { spawn } from "child_process"
 import path from "path"
 import os from "os"
-import { Flock } from "@opencode-ai/core/util/flock"
-import { Hash } from "@opencode-ai/core/util/hash"
+import { Flock } from "@arabcode/core/util/flock"
+import { Hash } from "@arabcode/core/util/hash"
 
 type Msg = {
   key: string

@@ -13,7 +13,7 @@
 - اسم الأمر: `opencode` → `arabcode` (في `packages/opencode/package.json` حقل `bin`).
 - الشعار ASCII في `packages/tui/src/logo.ts`: تصميم جديد بكتل "arab" + "code" (نفس بنية left/right).
 - كل ذكر مرئي لـ "opencode" في نصوص الواجهة → "arabic code".
-- **يبقى دون تغيير:** أسماء الحزم `@opencode-ai/*`، مسارات الإعدادات (`~/.config/opencode`)، نقاط API، أسماء الدوال والمتغيرات، بنية المستودع.
+- **يبقى دون تغيير:** أسماء الحزم `@arabcode/*`، مسارات الإعدادات (`~/.config/opencode`)، نقاط API، أسماء الدوال والمتغيرات، بنية المستودع.
 
 ### 2. التعريب الكامل
 - ~1864 نصاً مرئياً في `packages/tui/src` + ~84 في `packages/cli/src` + أوصاف الأوامر في `packages/opencode/src/cli/cmd/*`.

@@ -1,5 +1,5 @@
-import { Icon } from "@opencode-ai/ui/v2/icon"
-import { Popover } from "@opencode-ai/ui/popover"
+import { Icon } from "@arabcode/ui/v2/icon"
+import { Popover } from "@arabcode/ui/popover"
 import { createSignal, Show } from "solid-js"
 import { createStore } from "solid-js/store"
 

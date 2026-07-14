@@ -34,7 +34,7 @@
 - `packages/app/public/`: توليد المجموعة كاملة من شعار AC (`/home/abotrf/Desktop/arabcode-landing/assets/logoS.png` + `favicon.svg`): favicon.svg/ico/96x96، apple-touch-icon، web-app-manifest 192/512، site.webmanifest (الاسم arabcode)، social-share.png (بطاقة ذهبية داكنة بشعار wordmark).
 - مكوّن الشعار `packages/ui/src/components/logo.tsx` (`Mark`, `Splash`, `Wordmark` وما يلحق بها): استبدال الرسومات بهوية arabcode — مونوغرام AC وwordmark ARABCODE. الأجزاء البيضاء في الشعار تُربط بمتغير لون (`--icon-strong-base` أو ما يعادله) بحيث تصبح داكنة تلقائيًا في السمات الفاتحة؛ الذهبي يبقى ذهبيًا.
 - نصوص مرئية: `desktop-menu.ts` (label "OpenCode")، `windows-app-menu.tsx` (GroupLabel)، قيم الترجمة مثل `wsl.onboarding.step.opencode` في **كل** ملفات اللغات (تعديل قيم فقط — `parity.test.ts` يتحقق من تطابق المفاتيح، فلا تُضاف مفاتيح ولا تُحذف). مسح شامل لأي "OpenCode"/"opencode" ظاهر للمستخدم في `packages/app/src` و`packages/ui/src` (نصوص، aria-labels، placeholders).
-- **تبقى دون تغيير:** أسماء الحزم `@opencode-ai/*`، مفاتيح localStorage (`opencode.global.dat:*` — كسرها يفقد إعدادات المستخدمين)، متغيرات البيئة `OPENCODE_*`، وcookie `oc_locale`، وبادئات CSS `--v2-*`/`oc-` الداخلية.
+- **تبقى دون تغيير:** أسماء الحزم `@arabcode/*`، مفاتيح localStorage (`opencode.global.dat:*` — كسرها يفقد إعدادات المستخدمين)، متغيرات البيئة `OPENCODE_*`، وcookie `oc_locale`، وبادئات CSS `--v2-*`/`oc-` الداخلية.
 
 ## ٣. السمة الذهبية الافتراضية
 
