@@ -1,0 +1,45 @@
+{
+  "$schema": "https://opencode.ai/desktop-theme.json",
+  "name": "arabcode",
+  "id": "arabcode",
+  "light": {
+    "palette": {
+      "neutral": "#f6efe2",
+      "ink": "#241c12",
+      "primary": "#c98a00",
+      "success": "#2e9e44",
+      "warning": "#d97706",
+      "error": "#d64533",
+      "info": "#2b6cb0",
+      "interactive": "#a06e00",
+      "diffAdd": "#c8e6b9",
+      "diffDelete": "#f2b3a6"
+    },
+    "overrides": {
+      "border-weak-base": "#e3d6bd",
+      "border-weaker-base": "#ece2cd",
+      "surface-raised-base": "#f0e7d5",
+      "surface-raised-base-hover": "#eadfc9"
+    }
+  },
+  "dark": {
+    "palette": {
+      "neutral": "#171207",
+      "ink": "#f3e9d2",
+      "primary": "#ffaf00",
+      "success": "#58c472",
+      "warning": "#ffd166",
+      "error": "#ff6b57",
+      "info": "#6fa8ff",
+      "interactive": "#ffaf00",
+      "diffAdd": "#24422a",
+      "diffDelete": "#54231d"
+    },
+    "overrides": {
+      "border-weak-base": "#3a2f1a",
+      "border-weaker-base": "#2b2312",
+      "surface-raised-base": "#211a0c",
+      "surface-raised-base-hover": "#2a2110"
+    }
+  }
+}

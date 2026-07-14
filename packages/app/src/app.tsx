@@ -320,6 +320,7 @@ export function AppBaseProviders(props: ParentProps<{ locale?: Locale }>) {
     <MetaProvider>
       <Font />
       <ThemeProvider
+        defaultTheme="arabcode"
         onThemeApplied={(_, mode, scheme) => {
           void window.api?.setTitlebar?.({ mode, scheme })
         }}
