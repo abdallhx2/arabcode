@@ -39,7 +39,7 @@ const APP_IDS = {
 } as const
 
 const getBase = (appId: string): Configuration => ({
-  artifactName: "opencode-desktop-${os}-${arch}.${ext}",
+  artifactName: "arabcode-desktop-${os}-${arch}.${ext}",
   directories: {
     output: "dist",
     buildResources: "resources",
@@ -79,17 +79,32 @@ const getBase = (appId: string): Configuration => ({
   },
   win: {
     icon: `resources/icons/icon.ico`,
-    signtoolOptions: {
-      sign: signWindows,
-    },
+    // التوقيع (والذي يستدعي wine على Linux لتوقيع elevate.exe) يُفعَّل فقط في CI.
+    // محليًا يُنتَج مُثبِّت غير موقّع بلا حاجة إلى wine.
+    ...(process.env.GITHUB_ACTIONS === "true" ? { signtoolOptions: { sign: signWindows } } : {}),
     target: ["nsis"],
     verifyUpdateCodeSignature: false,
   },
   nsis: {
-    oneClick: true,
+    // معالج تثبيت كامل بتصميم النظام (Windows) — لا تثبيت صامت.
+    oneClick: false,
     perMachine: false,
+    allowElevation: true,
+    allowToChangeInstallationDirectory: true,
+    createDesktopShortcut: true,
+    createStartMenuShortcut: true,
+    runAfterFinish: true,
+    shortcutName: "arabcode",
+    menuCategory: false,
+    deleteAppDataOnUninstall: false,
+    license: `${rootDir}/LICENSE`,
+    // أيقونات ورسومات المُثبِّت بشعار arabcode (شريط جانبي + ترويسة).
     installerIcon: `resources/icons/icon.ico`,
-    installerHeaderIcon: `resources/icons/icon.ico`,
+    uninstallerIcon: `resources/icons/icon.ico`,
+    installerHeaderIcon: `resources/installerHeaderIcon.ico`,
+    installerSidebar: `resources/installerSidebar.bmp`,
+    uninstallerSidebar: `resources/uninstallerSidebar.bmp`,
+    installerHeader: `resources/installerHeader.bmp`,
   },
   linux: {
     icon: `resources/icons`,
@@ -116,7 +131,7 @@ function getConfig() {
         ...base,
         appId,
         productName: "arabcode Dev",
-        rpm: { packageName: "opencode-dev" },
+        rpm: { packageName: "arabcode-dev" },
       }
     }
     case "beta": {
@@ -124,9 +139,9 @@ function getConfig() {
         ...base,
         appId,
         productName: "arabcode Beta",
-        protocols: { name: "OpenCode Beta", schemes: ["opencode"] },
-        publish: { provider: "github", owner: "anomalyco", repo: "opencode-beta", channel: "latest" },
-        rpm: { packageName: "opencode-beta" },
+        protocols: { name: "arabcode Beta", schemes: ["opencode"] },
+        publish: { provider: "github", owner: "abdallhx2", repo: "arabcode", channel: "latest" },
+        rpm: { packageName: "arabcode-beta" },
       }
     }
     case "prod": {
@@ -135,9 +150,9 @@ function getConfig() {
         appId,
         productName: "arabcode",
         protocols: { name: "arabcode", schemes: ["opencode"] },
-        publish: { provider: "github", owner: "anomalyco", repo: "opencode", channel: "latest" },
+        publish: { provider: "github", owner: "abdallhx2", repo: "arabcode", channel: "latest" },
         deb: { fpm: [legacyDesktopEntryFpm] },
-        rpm: { packageName: "opencode", fpm: [legacyDesktopEntryFpm] },
+        rpm: { packageName: "arabcode", fpm: [legacyDesktopEntryFpm] },
       }
     }
   }

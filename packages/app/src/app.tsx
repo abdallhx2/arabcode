@@ -298,7 +298,11 @@ function NewAppLayout(props: ParentProps<{ serverScoped?: JSX.Element }>) {
 function DraftServerScopedProviders(props: ParentProps<{ directory?: () => string | undefined }>) {
   return (
     <PermissionProvider directory={props.directory}>
-      <ModelsProvider directory={props.directory}>{props.children}</ModelsProvider>
+      {/* LayoutProvider مطلوب هنا: FileProvider (في DraftProviders) يستدعي useLayout عند التهيئة.
+          نفس ترتيب ServerScopedProviders (Permission > Layout > Models). */}
+      <LayoutProvider>
+        <ModelsProvider directory={props.directory}>{props.children}</ModelsProvider>
+      </LayoutProvider>
     </PermissionProvider>
   )
 }

@@ -326,14 +326,13 @@ function LoadingSplash() {
 
 function DesktopRoot(props: { windowState: DesktopWindowState }) {
   const platform = createPlatform(props.windowState)
-  const loadLocale = async () => {
+  const loadLocale = async (): Promise<Locale> => {
     const current = await platform.storage?.("opencode.global.dat").getItem("language")
     const legacy = current ? undefined : await platform.storage?.().getItem("language.v1")
     const raw = current ?? legacy
-    if (!raw) return
-    const locale = raw.match(/"locale"\s*:\s*"([^"]+)"/)?.[1]
-    if (!locale) return
-    const next = normalizeLocale(locale)
+    const stored = raw?.match(/"locale"\s*:\s*"([^"]+)"/)?.[1]
+    // arabcode: العربية هي الافتراضية للمستخدمين الجدد (عند غياب لغة مخزّنة)
+    const next = normalizeLocale(stored ?? "ar")
     if (next !== "en") await loadLocaleDict(next)
     return next satisfies Locale
   }

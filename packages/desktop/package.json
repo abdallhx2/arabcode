@@ -4,10 +4,11 @@
   "version": "1.17.15",
   "type": "module",
   "license": "MIT",
-  "homepage": "https://opencode.ai",
+  "description": "arabcode — وكيل ترميز ذكاء اصطناعي عربي بالكامل لسطح المكتب",
+  "homepage": "https://github.com/abdallhx2/arabcode",
   "author": {
     "name": "arabcode",
-    "email": "hello@opencode.ai"
+    "email": "arabcode@users.noreply.github.com"
   },
   "scripts": {
     "typecheck": "tsgo -b",

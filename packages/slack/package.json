@@ -1,0 +1,19 @@
+{
+  "name": "@arabcode/slack",
+  "version": "1.17.15",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "dev": "bun run src/index.ts",
+    "typecheck": "tsgo --noEmit"
+  },
+  "dependencies": {
+    "@arabcode/sdk": "workspace:*",
+    "@slack/bolt": "^3.17.1"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "typescript": "catalog:",
+    "@typescript/native-preview": "catalog:"
+  }
+}
